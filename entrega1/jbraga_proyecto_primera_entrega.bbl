@@ -1,0 +1,35 @@
+\begin{thebibliography}{}
+
+\bibitem[Candelaria et~al., 2005]{candelaria2005argentine}
+Candelaria, L., Costa-Giomi, E., and Hughes, P. (2005).
+\newblock Argentine music for flute with the employment of extended techniques:
+  an analysis of selected works by eduardo bertola and marcelo toledo.
+
+\bibitem[Dixon and Widmer, 2005]{dixon2005match}
+Dixon, S. and Widmer, G. (2005).
+\newblock Match: A music alignment tool chest.
+\newblock In {\em ISMIR}, pages 492--497.
+
+\bibitem[Hu et~al., 2003]{hu2003polyphonic}
+Hu, N., Dannenberg, R.~B., and Tzanetakis, G. (2003).
+\newblock Polyphonic audio matching and alignment for music retrieval.
+\newblock {\em Computer Science Department}, page 521.
+
+\bibitem[Lerch, 2012]{Lerch:2012:IAC:2392638}
+Lerch, A. (2012).
+\newblock {\em An Introduction to Audio Content Analysis: Applications in
+  Signal Processing and Music Informatics}.
+\newblock Wiley-IEEE Press, 1st edition.
+
+\bibitem[M{\"u}ller et~al., 2006]{muller2006efficient}
+M{\"u}ller, M., Mattes, H., and Kurth, F. (2006).
+\newblock An efficient multiscale approach to audio synchronization.
+\newblock In {\em ISMIR}, pages 192--197. Citeseer.
+
+\bibitem[Turetsky and Ellis, 2003]{turetsky2003ground}
+Turetsky, R.~J. and Ellis, D.~P. (2003).
+\newblock Ground-truth transcriptions of real music from force-aligned midi
+  syntheses.
+\newblock In {\em ISMIR}.
+
+\end{thebibliography}

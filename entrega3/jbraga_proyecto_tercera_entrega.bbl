@@ -1,0 +1,15 @@
+\begin{thebibliography}{}
+
+\bibitem[Hall et~al., 2009]{hall2009weka}
+Hall, M., Frank, E., Holmes, G., Pfahringer, B., Reutemann, P., and Witten,
+  I.~H. (2009).
+\newblock The weka data mining software: an update.
+\newblock {\em ACM SIGKDD explorations newsletter}, 11(1):10--18.
+
+\bibitem[McFee et~al., 2015]{mcfee2015librosa}
+McFee, B., Raffel, C., Liang, D., Ellis, D.~P., McVicar, M., Battenberg, E.,
+  and Nieto, O. (2015).
+\newblock librosa: Audio and music signal analysis in python.
+\newblock In {\em Proceedings of the 14th Python in Science Conference}.
+
+\end{thebibliography}

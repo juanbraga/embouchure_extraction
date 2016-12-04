@@ -1,0 +1,140 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROCESAMIENTO DIGITAL DE SEÑALES DE AUDIO
+% HOJA DE EJERCICIOS NUMERO 1 
+% MAESTRÍA EN INGENIERÍA ELÉCTRICA, UDELAR
+% AGOSTO 2016
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+
+\usepackage[spanish]{babel}
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\usepackage{float}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Primera Entrega - Proyecto 2016}\\\large \textsc{Procesamiento digital de señales de audio}\\
+ \textsc{Maestría en Ingeniería Eléctrica} del \textit{Instituto de Ingeniería Eléctrica, Facultad de Ingeniería, Universidad de la República.}}
+
+\author{\textit{Juan Braga}}
+\date{30 de Agosto de 2016}
+
+\begin{document}
+
+\maketitle 
+
+%----------------------------------------------------------------------------------------
+%	EJERCICIO 1
+%----------------------------------------------------------------------------------------
+
+\section*{Descripción del proyecto}
+En el marco de la Tesis de Maestría en "Seguimiento de Partituras para obras de Flauta Traversa con Técnicas Tradicionales y Extendidas" se trabajará en la Alineación de Audio (Audio to Audio Alignment) entre 5 intepretaciones diferentes de la obra Aliento/Arrugas del compositor Marcelo Toledo.
+\medskip
+
+%\textit{Aclaración totalmente fuera de lugar: A lo mejor la tesis deja de ser de 'Seguimiento' y pasa a ser de 'Alineación'. Sería muy conveniente para mi :). Sino tendría que empezar a trabajar en tiempo real. Pero es sólo una idea que se me cruzó ahora.} 
+
+\subsection*{Breve reseña sobre Aliento/Arrugas:}
+\label{aliento}
+Es una obra para flauta traversa solista compuesta por el Argentino Marcelo Toledo en el año 1998. Fue compuesta y dedicada al flautista Ulla Suokko. 
+\medskip
+
+El material sonoro de la pieza no está basado en alturas y duraciones como único recurso musical, por el contrario incluye elementos basados en ruido de banda ancha, sonidos atonales y distorsionados. Emplea técnicas extendidas sobre el instrumento entre las que se incluyen (por su denominación en Inglés): 'Flutter Tongunig', 'Tongue Noises', 'Percussive Sounds', 'Microtonal Inflections', and 'Multiphonic Sounds'. Se puede definir como una exploración de las capacidades sonoras del instrumento con la respiración como fuente de exitación \cite{candelaria2005argentine}.   
+
+\section*{Alineación de Audio}
+La Alineación de Audio describe el proceso de encontrar puntos de correspondencia temporal entre dos señales de audio con contendio similar o equivalente. En el caso particular de grabaciones musicales, se puede definir como el mapeo a nivel temporal de dos realizaciones diferentes de la misma pieza. 
+\medskip
+
+El mapeo temporal entre audios se puede dividir en dos pasos básicos. En primer lugar la extracción de características a partir del análisis de audio, para luego a partir de las mismas, el computo de una matriz de distancia para encontrar el camino minimo y así determinar la alineación entre las dos secuencias temporales \cite[Chapter~7]{Lerch:2012:IAC:2392638}.
+\medskip
+
+En la literatura, las mayores diferencias entre las diversas estrategias para la resolución del problema están en la extracción de características. En cuanto al mejor camino para la alineación se deben básicamente a variaciones para la optimización del algoritmo Dynamic Time Warping (DTW).
+\medskip
+
+Por ejemplo \cite{hu2003polyphonic}	extrae solamente la información de chroma para la alineación. Así como \citep{muller2006efficient} que extraen el chroma a partir de la energía de salida de un banco de filtros. En el caso particular de Aliento/Arrugas, por el material sonoro de la pieza, no sería suficiente utilizar solamente información de altura músical.
+\medskip
+
+En el caso de \cite{turetsky2003ground} utilizan características basadas en STFT y usan similitud coseno para el computo de la matriz de distancia.
+\medskip
+
+Distinto es el enfoque de \cite{dixon2005match} que mediante la hipótesis de que el princpial objetivo de la alineación de audio es el mapeo de los tiempos de onset proponen el uso de un vector de características basado en Spectral-Flux.
+
+\section*{Objetivo}
+Explorar la extracción de características de diferente naturaleza y variaciones del algoritmo DTW, para la alineación de las distintas grabaciones de la obra Aliento/Arrugas. Determinar mediante metricas de evaluación cual es la mejor estrategia para resolver el problema particular.
+
+
+\section*{Datos}
+Se cuenta con 5 grabaciones de diferentes interpretaciones de la obra Aliento/Arrugas. Vale aclarar que no todas son en formato '.wav', se cuenta con archivos con compresión con pérdida. Los interpretes son: 
+
+\begin{itemize} 
+  \item Ulla Suokko (.wav PCM 16bits @44100Hz)
+  \item Emma Resmini (.wav PCM 16bits @44100Hz)
+  \item Pablo Somma (.wav PCM 16bits @44100Hz)
+  \item Clair Chase (.aiff)
+  \item Juan Pablo Quintero (.mp3)
+\end{itemize}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+
+%----------------------------------------------------------------------------------------
+\end{document}
+
+

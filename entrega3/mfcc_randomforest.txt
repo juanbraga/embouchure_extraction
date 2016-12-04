@@ -1,0 +1,86 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
+Relation:     mfcc_features-weka.filters.unsupervised.attribute.NumericToNominal-R41
+Instances:    56048
+Attributes:   41
+              587.22
+              107.69
+              -31.225
+              -69.37
+              -30.976
+              -5.3764
+              1.9544
+              13.979
+              19.111
+              12.624
+              11.72
+              15.658
+              9.7189
+              -1.3007
+              -6.1531
+              -6.7343
+              -4.1061
+              0.78603
+              0.55849
+              -2.7607
+              -3.0105
+              -3.8933
+              -4.3896
+              -0.12501
+              1.9848
+              -1.0458
+              -2.2885
+              -1.4513
+              -1.702
+              -1.8364
+              -1.8678
+              -2.6254
+              -2.9806
+              -1.6316
+              0.91356
+              1.3027
+              -1.183
+              -2.8335
+              -2.5314
+              -0.87109
+              1
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+Time taken to build model: 80.87 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       51510               91.9034 %
+Incorrectly Classified Instances      4538                8.0966 %
+Kappa statistic                          0.8723
+Mean absolute error                      0.1232
+Root mean squared error                  0.2121
+Relative absolute error                 28.8743 %
+Root relative squared error             45.9176 %
+Total Number of Instances            56048     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,961    0,062    0,899      0,961    0,929      0,888    0,989     0,978     1
+                 0,745    0,024    0,889      0,745    0,811      0,772    0,972     0,917     2
+                 0,966    0,040    0,949      0,966    0,957      0,925    0,993     0,991     3
+Weighted Avg.    0,919    0,044    0,918      0,919    0,917      0,880    0,987     0,971     
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 19627   655   136 |     a = 1
+  1810  8593  1128 |     b = 2
+   393   416 23290 |     c = 3
+
