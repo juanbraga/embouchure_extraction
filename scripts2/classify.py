@@ -12,6 +12,8 @@ import numpy as np
 from sklearn import neighbors
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
+from sklearn import preprocessing
+
 import sys
 import matlab.engine
 import extract_features
@@ -140,7 +142,7 @@ if __name__=='__main__':
         if len(sys.argv)>5:
 #        if True:
             print 'Computing MFCC Features with: ' + str(melcoeff) + ' Mel-Coefficients...'
-            extract_features.extract_mfcc(melcoeff, melbands)
+            extract_features.extract_mfcc(melcoeff, melbands, emb_number='2')
         
         features_train="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_train.npy"
         features_test="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_test.npy"
@@ -166,7 +168,7 @@ if __name__=='__main__':
             
         if len(sys.argv)>4:  
             print 'Computing Spectral Contrast Features with: ' + str(nbands) + ' analysis bands...'
-            extract_features.extract_spectral_contrast(nbands, quantile)
+            extract_features.extract_spectral_contrast(nbands, quantile, emb_number='2')
         
         features_train="../features/" + artist + "_spectral_contrast_" + str(nbands) + "_train.npy"
         features_test="../features/" + artist + "_spectral_contrast_" + str(nbands) + "_test.npy"
@@ -222,6 +224,10 @@ if __name__=='__main__':
     #CLASSIFIER PARAMETER
     n_neighbors=10
     n_estimators=10
+    
+    scaler = preprocessing.StandardScaler().fit(X)
+    X = scaler.transform(X)
+    X_test = scaler.transform(X_test)
     
     print X.shape
     
