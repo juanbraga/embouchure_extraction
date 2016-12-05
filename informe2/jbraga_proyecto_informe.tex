@@ -78,10 +78,10 @@
 \section*{Extracción de embocadura en Aliento/Arrugas: Introducción}
 En Aliento/Arrugas de Marcelo Toledo se utiliza como recurso compositivo tres tipos de embocadura para ejecución de la flauta. En la ejecución del instrumento se diferencian por el ángulo que forma la embocadura frente al flujo de aire. Desde la audición se puede percivir las diferencias en el material sonoro generado. Se enlista a continuación los nombres para cada caso, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa su notación en la partitura de Aliento/Arrugas.
 
-\begin{itemize} 
+\begin{itemize}
+  \item \textit{Normal Embrochure}: Embocadura clásica de la flauta, donde el el flujo de aire frente al filo de la embocadura genera la exitación tonal. 
   \item \textit{Blow Hole Covered}: El flujo de aire ingresa directo al tubo de la flauta, sin generar turbulencia contra el filo de la embocadura. 
   \item \textit{Breathy Embrochure}: Caso intermedio entre las otras dos embocaduras. 
-  \item \textit{Normal Embrochure}: Embocadura clásica de la flauta, donde el el flujo de aire frente al filo de la embocadura genera la exitación tonal.
 \end{itemize}
 \medskip
 
@@ -94,10 +94,10 @@ En Aliento/Arrugas de Marcelo Toledo se utiliza como recurso compositivo tres ti
 \end{figure}
 
 \section*{Definición del Problema}
-Se propone la extracción automática del tipo de embocadura a través del análisis computacional de grabaciones de la obra. En este caso se utilizará una estrategía de resolución del tipo de reconocimiento de patrones, en particular de clasificación supervisada. 
+Se propone la extracción automática del tipo de embocadura a través del análisis computacional de grabaciones de la obra. 
 
 \section*{Datos}
-Se cuenta con 3 grabaciones de diferentes intérpretes de la obra Aliento/Arrugas. Los intérpretes son: Pablo Somma, Emma Resmini y Ulla Suokko. Los archivos de audio se etiquetaron utilizando el software \textit{Sonic Visualizer} dividiendo los fragmentos de audio en 5 clases:
+Se cuenta con 5 grabaciones de diferentes intérpretes de la obra Aliento/Arrugas. Los intérpretes son: Pablo Somma, Emma Resmini, Claire Chase, Juan Pablo Quinteros y Ulla Suokko. Los archivos de audio se etiquetaron utilizando el software \textit{Sonic Visualizer} dividiendo los fragmentos de audio en 5 clases:
 
 \begin{itemize} 
   \item Silencio.
@@ -107,8 +107,32 @@ Se cuenta con 3 grabaciones de diferentes intérpretes de la obra Aliento/Arruga
   \item Sonido generado con \textit{Normal Embrochure}.
 \end{itemize}
 
+Para el presente informe se trabaja con las tres últimas clases de la lista anterior. 
+
+\section{Estrategia de resolución}
+
+Se trata de resolver el problema con un enfoque de reconocimiento de patrones. Se procesa el audio como un \textit{Bag of Frames} a partir del computo de características. Se utilizan tres algoritmos clásicos de clasificación para evaluación del desempeño de las características en la extracción automática de embocadura a partir de las muestras de audio.
+
+\subsection{Análisis de la naturaleza sonora del problema}
+
+Color
+Material sonoro
+Embocadura
+
+   
+
+\subsection{Extracción de características}
 
 
+\subsubsection{}
+
+
+\section{Trabajo a futuro}
+
+\begin{itemize} 
+  \item Segmentación de audio, umbralizando los silencios y las respiraciones 
+  \item Salir del bag of frames, para utilizar la redundancia temporal
+\end{itemize}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------

@@ -51,7 +51,7 @@ def plot_confusion_matrix(cm, classes,
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    plt.show()
+#    plt.show()
 
 if __name__=='__main__':
     
@@ -200,11 +200,11 @@ if __name__=='__main__':
         test=np.load(features_test)
         train=np.load(features_train)
         
-        X=train[0:4,:].T
+        X=train[0:5,:].T
         y=train[5,:]
         time_train=train[6,:]
         
-        X_test=test[0:4,:].T
+        X_test=test[0:5,:].T
         y_test=test[5,:]
         time_test=test[6,:]
         
