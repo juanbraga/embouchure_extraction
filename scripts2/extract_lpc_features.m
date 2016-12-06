@@ -60,7 +60,7 @@ t_len_emma = length(t_slices_emma);
 t_len_pablo = length(t_slices_pablo);
 t_len_ulla = length(t_slices_ulla);
 
-p=20;
+p=40;
 
 %CLAIRE
 ak_claire = zeros(p, t_len_claire);

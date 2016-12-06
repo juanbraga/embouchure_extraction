@@ -63,7 +63,7 @@ def voicing(x, winlen=1024, hop=512, fs=44100, num_lags=250, kappa=0.15):
     
 #    plt.figure(), plt.plot(t_voicing,locs[0,:]/max(locs[0,:]),'r'), plt.plot(t_voicing,voicing_feature[0,:],'b')
     
-    return voicing_feature, t_voicing
+    return voicing_feature, t_voicing, d_prime
     
     
 if __name__=='__main__':
@@ -80,7 +80,7 @@ if __name__=='__main__':
     overlap = winlen - hop
     nfft = 16*winlen
     
-    voicing_feature, t_voicing = voicing(x, winlen, hop, fs, num_lags=250)
+    voicing_feature, t_voicing, d_prime = voicing(x, winlen, hop, fs, num_lags=250)
     
 
 #    f, t_S, Sxx = signal.spectrogram(x, fs, window='hamming', nperseg=winlen, 
