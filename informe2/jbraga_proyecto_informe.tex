@@ -124,6 +124,15 @@ Embocadura
 
 MFCC LPC SPECTRALCONTRAST CLASSICSPECTRALS
 
+Se evaluó el desempeño de características de diversa naturaleza en la extracción del tipo de embocadura. 
+\medskip
+
+Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
+\medskip
+
+Se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. La implementación utiliza el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit} 
+\medskip
+
 Se identifica nuevamente el problema en la separación
 
 Comparar confusión entre 2x2 y 3x3 en la separación de BHC y BREATHY

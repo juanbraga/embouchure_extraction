@@ -77,4 +77,13 @@ features_spectral="../features/" + 'juan' + "_spectral_" + str(2048) + str(1024)
 data_spectral=np.load(features_spectral)
 d_spectral = {'rolloff': data_spectral[0,:], 'centroid': data_spectral[1,:], 'bandwith': data_spectral[2,:], 'zcr': data_spectral[3,:], 'voicing': data_spectral[4,:], 'gt': data_spectral[5,:]}
 df_spectral = pandas.DataFrame(data=d_spectral)
-sns.pairplot(df_spectral, hue='gt', vars=[ 'voicing', 'zcr', 'centroid', 'bandwith', 'rolloff'])
+sns.pairplot(df_spectral, hue='gt', vars=['voicing', 'zcr','centroid'])
+
+## Set up the matplotlib figure
+#f, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 6), sharex=True)
+#
+## Generate some sequential data
+#x = np.array(('Blow Hole Covered', 'Breathy', 'Normal'))
+#sns.barplot(x, [df_spectral['gt'][df_spectral['gt']==1].shape[0],df_spectral['gt'][df_spectral['gt']==2].shape[0],df_spectral['gt'][df_spectral['gt']==3].shape[0]], palette="BuGn_d", ax=ax1)
+#ax1.set_ylabel("Frames por clase")
+

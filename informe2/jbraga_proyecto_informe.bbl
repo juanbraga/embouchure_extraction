@@ -1,0 +1,9 @@
+\begin{thebibliography}{}
+
+\bibitem[Pedregosa et~al., 2011]{pedregosa2011scikit}
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
+  O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., et~al. (2011).
+\newblock Scikit-learn: Machine learning in python.
+\newblock {\em Journal of Machine Learning Research}, 12(Oct):2825--2830.
+
+\end{thebibliography}

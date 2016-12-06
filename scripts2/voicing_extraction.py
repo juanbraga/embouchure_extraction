@@ -33,6 +33,7 @@ def voicing(x, winlen=1024, hop=512, fs=44100, num_lags=250, kappa=0.15):
                 d[j,i] = np.sum(np.square(slices[0:winlen,i]-slices[j:winlen+j,i]));
                 d_prime[j,i] = d[j,i]*float(j)/sum(d[1:j+1,i]);
                 
+    d_prime=np.nan_to_num(d_prime)
     
     d_prime_threshold = np.zeros(d_prime.shape)
     np.copyto(d_prime_threshold,d_prime)
@@ -59,11 +60,11 @@ def voicing(x, winlen=1024, hop=512, fs=44100, num_lags=250, kappa=0.15):
 #    plt.plot(t_voicing,locs[0,:],'w')
            
     voicing_feature=1-voicing_feature
-    voicing_feature=np.nan_to_num(voicing_feature)
+#    voicing_feature=np.nan_to_num(voicing_feature)
     
 #    plt.figure(), plt.plot(t_voicing,locs[0,:]/max(locs[0,:]),'r'), plt.plot(t_voicing,voicing_feature[0,:],'b')
     
-    return voicing_feature, t_voicing, d_prime
+    return voicing_feature, t_voicing#, d_prime
     
     
 if __name__=='__main__':
