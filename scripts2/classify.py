@@ -46,7 +46,7 @@ def plot_confusion_matrix(cm, classes,
 
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, cm[i, j],
+        plt.text(j, i, int(100*cm[i, j]),
                  horizontalalignment="center",
                  color="white" if cm[i, j] > thresh else "black")
 
@@ -63,7 +63,7 @@ if __name__=='__main__':
     artist = sys.argv[1]
     feature_name = sys.argv[2]
 
-#    artist = 'juan'
+#    artist = 'pablo'
 #    feature_name = 'MFCC'
     
     if feature_name == 'LPC':
@@ -112,7 +112,7 @@ if __name__=='__main__':
         features_train="../features/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_train.npy"
         features_test="../features/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_test.npy"
         
-        test=np.load(features_test)
+#        test=np.load(features_test)
         train=np.load(features_train)
 
         #con voicing
@@ -130,6 +130,7 @@ if __name__=='__main__':
         
         prediction_file="../prediction/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_prediction.npy"    
         prediction_csv="../prediction/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_prediction.csv" 
+        proba_csv="../prediction/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_proba.csv" 
         
     if feature_name == 'MFCC':
         
@@ -142,7 +143,7 @@ if __name__=='__main__':
         if len(sys.argv)>5:
 #        if True:
             print 'Computing MFCC Features with: ' + str(melcoeff) + ' Mel-Coefficients...'
-            extract_features.extract_mfcc(melcoeff, melbands, emb_number='2')
+            extract_features.extract_mfcc(melcoeff, melbands, emb_number='3')
         
         features_train="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_train.npy"
         features_test="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_test.npy"
@@ -160,7 +161,9 @@ if __name__=='__main__':
         
         prediction_file="../prediction/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_prediction.npy"    
         prediction_csv="../prediction/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_prediction.csv" 
-        
+        proba_csv="../prediction/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_proba.csv"
+        proba_file="../prediction/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_proba.npy"
+       
     if feature_name == 'SPECTRALCONTRAST':
         
         nbands = int(sys.argv[3])
@@ -186,6 +189,7 @@ if __name__=='__main__':
         
         prediction_file="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_prediction.npy"    
         prediction_csv="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_prediction.csv" 
+        proba_csv="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_proba.csv"
 
     if feature_name == 'SPECTRAL':
         
@@ -212,6 +216,7 @@ if __name__=='__main__':
         
         prediction_file="../prediction/" + artist + "_spectral_" + str(winlen) + str(hop) + "_prediction.npy"    
         prediction_csv="../prediction/" + artist + "_spectral_" + str(winlen) + str(hop) + "_prediction.csv" 
+        proba_csv="../prediction/" + artist + "_spectral_" + str(winlen) + str(hop) + "_proba.csv"
 
     
     #%% CLASSIFY
@@ -227,7 +232,9 @@ if __name__=='__main__':
     
     scaler = preprocessing.StandardScaler().fit(X)
     X = scaler.transform(X)
-    X_test = scaler.transform(X_test)
+    
+    scaler2 = preprocessing.StandardScaler().fit(X_test)
+    X_test = scaler2.transform(X_test)
     
     print X.shape
     
@@ -246,13 +253,24 @@ if __name__=='__main__':
     svm_score = lin_svm.score(X_test, y_test) 
     print 'SVM (Linear Kernel): ' + str(svm_score)
 
-    X_prediction = knn.predict(X_test)   
+    X_prediction = rf.predict(X_test)
+    X_prediction_proba = rf.predict_proba(X_test)
+    #%%
+    
+    time_test=time_test.reshape((len(time_test),1))
+    y_test_aux=y_test.reshape((len(time_test),1))
+    X_prediction_proba = np.concatenate((X_prediction_proba, time_test, y_test_aux),axis=1)
+    
+  
 
     if feature_name!='LPC':    
         print 'Saving prediction vector with Random Forest...'        
         aux_vec = np.c_[(X_prediction, y_test, time_test)]
         np.save(prediction_file, aux_vec)
         np.savetxt(prediction_csv, aux_vec)
+        np.save(proba_file, X_prediction_proba)
+        np.savetxt(proba_csv, X_prediction_proba)        
+        
     
     print 'Generating confusion matrix ...'
     from sklearn.metrics import confusion_matrix

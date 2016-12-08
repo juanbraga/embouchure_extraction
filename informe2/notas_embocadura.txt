@@ -1,0 +1,2 @@
+Jugar con la cantidad de bandas y los coeff de los MFCC
+discusion: uso solo mfcc con 40 bandas y se confunde la tonal (le agrego el voicing)

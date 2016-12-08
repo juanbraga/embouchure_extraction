@@ -14,7 +14,7 @@ import voicing_extraction
 
 
 if __name__=='__main__':
-    
+        
     winlen = 1024
     hop = 512   
     overlap = winlen - hop
@@ -41,7 +41,7 @@ if __name__=='__main__':
     x_voicing = x_voicing.reshape((1,len(x_voicing)))    
     #%%
     t_feature = np.arange(x_rolloff.shape[1]) * (float(hop)/fs)
-    t_feature = t_feature.reshape((1,len(t_feature))) 
+    t_feature = t_feature.reshape((1,len(t_feature)))   
 
 #    f, t_S, Sxx = signal.spectrogram(x, fs, window='hamming', nperseg=winlen, 
 #                                 noverlap=overlap, nfft=nfft, detrend='constant',

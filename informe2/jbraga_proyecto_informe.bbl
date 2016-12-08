@@ -1,5 +1,22 @@
 \begin{thebibliography}{}
 
+\bibitem[De~Cheveign{\'e} and Kawahara, 2002]{de2002yin}
+De~Cheveign{\'e}, A. and Kawahara, H. (2002).
+\newblock Yin, a fundamental frequency estimator for speech and music.
+\newblock {\em The Journal of the Acoustical Society of America},
+  111(4):1917--1930.
+
+\bibitem[Jiang et~al., 2002]{jiang2002music}
+Jiang, D.-N., Lu, L., Zhang, H.-J., Tao, J.-H., and Cai, L.-H. (2002).
+\newblock Music type classification by spectral contrast feature.
+\newblock In {\em Multimedia and Expo, 2002. ICME'02. Proceedings. 2002 IEEE
+  International Conference on}, volume~1, pages 113--116. IEEE.
+
+\bibitem[Klapuri and Davy, 2007]{klapuri2007signal}
+Klapuri, A. and Davy, M. (2007).
+\newblock {\em Signal processing methods for music transcription}.
+\newblock Springer Science \& Business Media.
+
 \bibitem[Pedregosa et~al., 2011]{pedregosa2011scikit}
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
   O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., et~al. (2011).

@@ -76,7 +76,7 @@
 %----------------------------------------------------------------------------------------
 
 \section*{Extracción de embocadura en Aliento/Arrugas: Introducción}
-En Aliento/Arrugas de Marcelo Toledo se utiliza como recurso compositivo tres tipos de embocadura para ejecución de la flauta. En la ejecución del instrumento se diferencian por el ángulo que forma la embocadura frente al flujo de aire. Desde la audición se puede percivir las diferencias en el material sonoro generado. Se enlista a continuación los nombres para cada caso, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa su notación en la partitura de Aliento/Arrugas.
+En Aliento/Arrugas de Marcelo Toledo se utiliza como recurso expresio tres tipos de embocadura para ejecución de la flauta. Se diferencian por el ángulo que forma el flujo de aire frente al filo de la embocadura. Se enlista a continuación los nombres de cada una, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa su notación en la partitura de Aliento/Arrugas.
 
 \begin{itemize}
   \item \textit{Normal Embrochure}: Embocadura clásica de la flauta, donde el el flujo de aire frente al filo de la embocadura genera la exitación tonal. 
@@ -109,29 +109,47 @@ Se cuenta con 5 grabaciones de diferentes intérpretes de la obra Aliento/Arruga
 
 Para el presente informe se trabaja con las tres últimas clases de la lista anterior. 
 
-\section{Estrategia de resolución}
+\section{Análisis de la naturaleza sonora del problema}
 
-Se trata de resolver el problema con un enfoque de reconocimiento de patrones. Se procesa el audio como un \textit{Bag of Frames} a partir del computo de características. Se utilizan tres algoritmos clásicos de clasificación para evaluación del desempeño de las características en la extracción automática de embocadura a partir de las muestras de audio.
-
-\subsection{Análisis de la naturaleza sonora del problema}
-
+Se cree que se puede separar con características que describan el nivel de peridicidad de la señal. 
+Primer experimento: con Voicing y ZCR \citep[Chapter~4]{rabiner1978digital}
+El compositor 
 Color
 Material sonoro
 Embocadura
 
+\section{Estrategia de resolución}
+
+Se trata de resolver el problema con un enfoque de reconocimiento de patrones. Se procesa el audio como un \textit{Bag of Frames} a partir del computo de características. Se utilizan tres algoritmos clásicos de clasificación para evaluación del desempeño de las características en la extracción automática de embocadura a partir de las muestras de audio.
+
    
-\subsection{Extracción de características}
+\subsection{Experimentos}
 
-MFCC LPC SPECTRALCONTRAST CLASSICSPECTRALS
-
-Se evaluó el desempeño de características de diversa naturaleza en la extracción del tipo de embocadura. 
+Se evalúa el desempeño de características de diversa naturaleza en la extracción del tipo de embocadura. Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
 \medskip
 
-Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
+Se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. En todos los casos se utilizan los parámetros por defecto ya que no es objetivo de este trabajo encontrar los valores óptimos de clasificación. La implementación se realiza mediante el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit}. En todos los casos los datos son preprocesados de manera de centrar en cero y escalar la varianza a uno, previo al clasificador.
 \medskip
 
-Se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. La implementación utiliza el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit} 
-\medskip
+\subsection{Extración de características}
+Se enlistan a continuación las características que se evalúan la extracción automática de embocadura. Además se describe brevemente sus principales características.
+
+\begin{itemize} 
+  \item Características Clásicas
+  \item MFCC 
+  \item LPC
+  \item Spectral Contrast \citep{jiang2002music}
+\end{itemize}
+
+\subsection{Resultados}
+Accuracy
+
+Confusión de MFCC:
+
+\subsection{Experimentos 2}
+MFCC es un fierro pero apriori no tiene porque utilizar la información de periodicidad propiamente dicha. Parámetro relevante en la separación de estos tres tipos de embocadura. Se agrega voicing tipo yin \cite{de2002yin}
+
+
 
 Se identifica nuevamente el problema en la separación
 

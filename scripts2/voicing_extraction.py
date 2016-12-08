@@ -81,7 +81,7 @@ if __name__=='__main__':
     overlap = winlen - hop
     nfft = 16*winlen
     
-    voicing_feature, t_voicing, d_prime = voicing(x, winlen, hop, fs, num_lags=250)
+    voicing_feature, t_voicing = voicing(x, winlen, hop, fs, num_lags=250)
     
 
 #    f, t_S, Sxx = signal.spectrogram(x, fs, window='hamming', nperseg=winlen, 
