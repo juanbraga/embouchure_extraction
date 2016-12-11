@@ -67,15 +67,15 @@ g.despine(left=True)
 
 #%% MFCC
 
-mfcc_2040_knn = [79,76,77,77,82]
-mfcc_2040_rf = [71,74,80,72,81]
-mfcc_2040_svm = [72,73,79,70,82]
-mfcc_3040_knn = [72,79,80,80,84]
-mfcc_3040_rf = [72,78,82,75,84]
-mfcc_3040_svm = [77,75,80,76,82]
-mfcc_4040_knn = [82,81,81,82,85]
-mfcc_4040_rf = [74,79,82,75,83]
-mfcc_4040_svm = [77,76,80,77,83]
+mfcc_2040_knn = [80,77,78,78,82]
+mfcc_2040_rf = [79,75,79,76,81]
+mfcc_2040_svm = [79,72,79,74,82]
+mfcc_3040_knn = [82,81,80,80,84]
+mfcc_3040_rf = [80,79,82,75,84]
+mfcc_3040_svm = [81,75,80,76,82]
+mfcc_4040_knn = [82,82,81,82,85]
+mfcc_4040_rf = [81,79,82,75,83]
+mfcc_4040_svm = [81,77,80,77,83]
 
 d_mfcc = {'accuracy' : pd.Series(np.concatenate((mfcc_2040_knn,mfcc_2040_rf,mfcc_2040_svm,mfcc_3040_knn,mfcc_3040_rf,mfcc_3040_svm,mfcc_4040_knn,mfcc_4040_rf,mfcc_4040_svm))),
      'artist': pd.Series(['ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire', \
@@ -177,19 +177,14 @@ g.despine(left=True)
 
 #%% BHC Vs. Breathy
 
-mfcc_bhcbr = np.array([80,72,74,78,74,75,76,76,77,78,72,64,82,82,82])
-speccont_bhcbr = np.array([67,70,57,78,76,78,77,77,78,69,68,64,77,77,79])
+mfcc_bhcbr = np.array([83,84,81,81,77,74,76,78,79,79,76,73,82,82,84])
 
-d_bhcbr = {'accuracy' : pd.Series(np.concatenate((mfcc_bhcbr,speccont_bhcbr))),
-     'artist': pd.Series(['ulla','ulla','ulla','pablo','pablo','pablo','emma','emma','emma','juan','juan','juan','claire','claire','claire', \
-     'ulla','ulla','ulla','pablo','pablo','pablo','emma','emma','emma','juan','juan','juan','claire','claire','claire']),
-     'clf': pd.Series(['knn','rf','svm','knn','rf','svm','knn','rf','svm','knn','rf','svm','knn','rf','svm', \
-     'knn','rf','svm','knn','rf','svm','knn','rf','svm','knn','rf','svm','knn','rf','svm',]),
+d_bhcbr = {'accuracy' : pd.Series(mfcc_bhcbr),
+     'artist': pd.Series(['ulla','ulla','ulla','pablo','pablo','pablo','emma','emma','emma','juan','juan','juan','claire','claire','claire']),
+     'clf': pd.Series(['knn','rf','svm','knn','rf','svm','knn','rf','svm','knn','rf','svm','knn','rf','svm']),
      'params': pd.Series(['20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands', \
      '20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands','20coeff-40bands', \
-     '20coeff-40bands','20coeff-40bands','6bands','6bands','6bands','6bands','6bands', \
-     '6bands','6bands','6bands','6bands','6bands','6bands','6bands',\
-     '6bands','6bands','6bands'])}
+     '20coeff-40bands','20coeff-40bands'])}
 
 
 df_bhcbr = pd.DataFrame(data=d_bhcbr)
@@ -206,7 +201,7 @@ g.despine(left=True)
 
 #%% MFCC + Voicing
 
-mfcc_2040 = np.array([79,71,72,76,74,73,77,80,79,77,72,70,82,81,82])
+mfcc_2040 = np.array([80,79,79,77,75,72,78,79,79,78,76,74,82,81,82])
 mfccvoicing = np.array([80,74,74,77,76,76,78,81,80,77,74,71,83,82,82])
 
 d_mfccvoicing = {'accuracy' : pd.Series(np.concatenate((mfcc_2040,mfccvoicing))),
@@ -227,9 +222,51 @@ df_mfccvoicing = pd.DataFrame(data=d_mfccvoicing)
 g = sns.factorplot(x="clf", y="accuracy", hue="params", data=df_mfccvoicing,
                    capsize=.2, palette="hls", size=6, aspect=.75)
 g.despine(left=True)
+plt.title('MFCC Vs. MFCC + Voicing')
+
 
 # Draw a pointplot to show pulse as a function of three categorical factors
 g = sns.factorplot(x="artist", y="accuracy", hue="params", data=df_mfccvoicing,
                    capsize=.2, palette="hls", size=6, aspect=.75)
 g.despine(left=True)
+plt.title('MFCC Vs. MFCC + Voicing')
 
+
+#%% MFCC REFINATION
+
+mfcc_512256_knn = [80,76,77,77,79]
+mfcc_512256_rf = [78,75,78,75,79]
+mfcc_512256_svm = [79,73,79,76,80]
+mfcc_1024512_knn = [80,77,78,78,82]
+mfcc_1024512_rf = [79,75,79,76,81]
+mfcc_1024512_svm = [79,72,79,74,82]
+mfcc_20481024_knn = [80,78,79,78,82]
+mfcc_20481024_rf = [78,76,78,75,81]
+mfcc_20481024_svm = [78,72,79,73,82]
+
+d_mfcc_refi = {'accuracy' : pd.Series(np.concatenate((mfcc_512256_knn,mfcc_512256_rf,mfcc_512256_svm,mfcc_1024512_knn,mfcc_1024512_rf,mfcc_1024512_svm,mfcc_20481024_knn,mfcc_20481024_rf,mfcc_20481024_svm))),
+     'artist': pd.Series(['ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire', \
+     'ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire', \
+     'ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire','ulla','pablo','emma','juan','claire']),
+     'clf': pd.Series(['knn','knn','knn','knn','knn','rf','rf','rf','rf','rf','svm','svm','svm','svm','svm', \
+     'knn','knn','knn','knn','knn','rf','rf','rf','rf','rf','svm','svm','svm','svm','svm', \
+     'knn','knn','knn','knn','knn','rf','rf','rf','rf','rf','svm','svm','svm','svm','svm']),
+     'params': pd.Series(['512win-256hop','512win-256hop','512win-256hop','512win-256hop','512win-256hop','512win-256hop', \
+     '512win-256hop','512win-256hop','512win-256hop','512win-256hop','512win-256hop','512win-256hop','512win-256hop', \
+     '512win-256hop','512win-256hop','1024win-512hop','1024win-512hop','1024win-512hop','1024win-512hop','1024win-512hop', \
+     '1024win-512hop','1024win-512hop','1024win-512hop','1024win-512hop','1024win-512hop','1024win-512hop','1024win-512hop',\
+     '1024win-512hop','1024win-512hop','1024win-512hop','2048win-1024hop','2048win-1024hop','2048win-1024hop','2048win-1024hop', \
+     '2048win-1024hop','2048win-1024hop','2048win-1024hop','2048win-1024hop','2048win-1024hop','2048win-1024hop','2048win-1024hop',\
+     '2048win-1024hop','2048win-1024hop','2048win-1024hop','2048win-1024hop'])}
+
+df_mfcc_refi = pd.DataFrame(data=d_mfcc_refi)
+     
+# Draw a pointplot to show pulse as a function of three categorical factors
+g = sns.factorplot(x="clf", y="accuracy", hue="params", data=df_mfcc_refi,
+                   capsize=.2, palette="hls", size=6, aspect=.75)
+g.despine(left=True)
+
+# Draw a pointplot to show pulse as a function of three categorical factors
+g = sns.factorplot(x="artist", y="accuracy", hue="params", data=df_mfcc_refi,
+                   capsize=.2, palette="hls", size=6, aspect=.75)
+g.despine(left=True)

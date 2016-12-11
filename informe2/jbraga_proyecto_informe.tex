@@ -61,7 +61,7 @@
 %	DOCUMENT INFORMATION
 %----------------------------------------------------------------------------------------
 
-\title{\textbf{Informe Final - Proyecto 2016}\\\large \textsc{Procesamiento digital de señales de audio}\\
+\title{\textbf{Extracción de embocadura en Aliento/Arrugas}\\\large \textsc{Proyecto Final - Procesamiento Digital de Señales de Audio - Curso 2016}\\
  \textsc{Maestría en Ingeniería Eléctrica} del \textit{Instituto de Ingeniería Eléctrica, Facultad de Ingeniería, Universidad de la República.}}
 
 \author{\textit{Juan Braga}}
@@ -72,82 +72,139 @@
 \maketitle 
 
 %----------------------------------------------------------------------------------------
-%	EJERCICIO 1
+%	INTRODUCCIÓN
 %----------------------------------------------------------------------------------------
 
-\section*{Extracción de embocadura en Aliento/Arrugas: Introducción}
-En Aliento/Arrugas de Marcelo Toledo se utiliza como recurso expresivo tres tipos de embocadura para ejecución de la flauta. Se diferencian por el ángulo que forma el flujo de aire frente al filo de la embocadura. Se enlista a continuación los nombres de cada una, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa su notación en la partitura de Aliento/Arrugas.
+\section{Introducción}
+\subsection{La Flauta Traversa}
+Técnicas extendidas y técnicas tradicionales papurri
+
+\subsection{Embocadura}
+\label{embocadura}
+El término embocadura refiere al aparato de producción de la exitación de la columna de aire, en conjunto a la técnica de soplido \citep[Capítulo~6]{piston1955orchestration}. Por ejemplo en el caso particular de la flauta ejecutada con técnica tradicional, los labios dirigen el flujo de aire directamente al bisel en el hueco del instrumento. De esta forma la turbulencia producida por la colisión, genera una exitación periódica en la columna de aire que provoca la resonancia del instrumento y un sonido tonal. 
+\medskip
+
+La embocadura es un elemento determinante del material sonoro ejecutado, siendo perceptible de forma auditiva a través de variaciones en la dinámica, altura y timbre \citep[Capítulo~2]{dick1975other}. Las características sonoras quedan determinadas por los siguientes parámetros físicos de la ejecución del instrumento:
 
 \begin{itemize}
-  \item \textit{Normal Embrochure}: Embocadura clásica de la flauta, donde el el flujo de aire frente al filo de la embocadura genera la exitación tonal. 
-  \item \textit{Blow Hole Covered}: El flujo de aire ingresa directo al tubo de la flauta, sin generar turbulencia contra el filo de la embocadura. 
-  \item \textit{Breathy Embrochure}: Caso intermedio entre las otras dos embocaduras. 
+  \item \textbf{Ángulo de la flauta:} Por un lado afecta la altura de la ejecución. Al girar hacia el intérprete la altura baja, por el contrario sube al girar en el otro sentido. Por otro lado genera cambios en el timbre del material sonoro. Al girar hacia afuera (sentido opuesto al intérprete) mas allá del ángulo normal de ejecución, el sonido se vuelve primero más brillante y luego aumenta la prominencia del componente de ruido, en inglés se lo define como \textit {Breathy}, se lo puede traducir al español como \textit{Respirado}. Sin embargo al girar hacia el intérprete aumenta la energía de los parciales altos y disminuye la fundamental generando un sonido que se puede definir metafóricamente como \textit{Filoso} o \textit{Edgy} por su denominación en inglés.
+  \item \textbf{Apertura de los labios:} La apertura de los labios determina la dispersión del flujo de aire. Aperturas pequeñas producen flujos puntulaes, disminuyendo la dinámica y clarificando el sonido. Del otro lado aperturas mayores aumentan la intensidad y la naturaleza ruidosa.   
+  \item \textbf{Posición de los labios:} Una posición correcta de los labios genera que la embocadura tenga gran control del sonido. Si bien la posición de los labios, y los movimientos de los mismos en la ejecución es un aspecto personal del ejecutante, existen dos tipos básicos. Alturas bajas y/o dinámicas intensas aumentan con el movimiento de los bordes de los labios hacia afuera generando casi una sonrisa en el intéprete. En la segunda posición de los labios, los bordes se mueven hacia abajo en vez de hacia afuera, teniendo un efecto similar al mencionado anteriormente.	
+  \item \textbf{Presión de aire:} La presión de aire es controlada por el diafragma. Determina el nivel dinámico de la ejecución. La intensidad del aire es proporcional a la intensidad de la ejecución. Además afecta la altura del material sonoro, presiones de aire altas tienden a elevar la nota, mientras que presiones menores la disminuyen.	
+\end{itemize}
+\medskip 
+
+\subsection{Aliento/Arrugas de Marcelo Toledo}
+Aliento/Arrugas es una obra para flauta traversa solista, compuesta por el argentino Marcelo Toledo. Incluye una cantidad de sonoridades exóticas mediante la ejecución del insturmento a través de técnicas extendidas. Según el compositor la intención detrás es la exploración sonora del instrumento utilizando la respiración del intérprete como elemento de expresión orgánica \citep{candelaria2005argentine}.  
+\medskip
+
+El compositor utiliza como recurso expresivo tres tipos de embocadura para ejecución del instrumento. Se diferencian por el ángulo de la flauta (ver \ref{embocadura}), en otras palabras el ángulo entre el flujo de aire frente al bisel de la embocadura. Se enlista a continuación los nombres, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa la notación utilizada por el compositor en la partitura de Aliento/Arrugas.
+
+\begin{itemize}
+  \item \textit{Normal Embouchure}: Embocadura clásica de la flauta, donde el flujo de aire frente al bisel de la embocadura genera la exitación con pulsos períodicos de la columna de aire. 
+  \item \textit{Blow Hole Covert}: El flujo de aire ingresa directo al tubo de la flauta, sin generar turbulencia contra el bisel de la embocadura. Los labios cubren el agüjero del instrumento.
+  \item \textit{Breathy Embouchure}: La flauta se encuentra rotada hacia el lado contrario del intérprete, tomando como referencia la embocadura normal. Genera sonidos con orientación tonal pero con un gran componente ruidoso.
 \end{itemize}
 \medskip
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.9\textwidth]{embocaduras} 
-\caption{Notación de las embocaduras se observa en la parte superior de los sistemas. (a) \textit{Blow Hole Covered}. (b) \textit{Breathy Embrochure}. (c) \textit{Normal Embrochure}. Fragmentos extraídos de la partitura de Aliento/Arrugas.}
+\caption{Notación de las embocaduras se observa en la parte superior de los sistemas. (a) \textit{Blow Hole Covert}. (b) \textit{Breathy Embouchure}. (c) \textit{Normal Embouchure}. Fragmentos extraídos de la partitura de Aliento/Arrugas.}
 \label{fig:embocaduras}
 \end{center}
 \end{figure}
 
-\section*{Definición del Problema}
-Se propone la extracción automática del tipo de embocadura a través del análisis computacional de grabaciones de la obra. 
+\section{Definición del Problema}
+Teniendo en cuenta que la embocadura es un elemento determinante del material sonoro ejecutado perceptible de forma auditiva (Sección \ref{embocadura}), se propone la extracción automática del tipo de embocadura a través del análisis computacional de grabaciones de la obra. 
 
-\section*{Datos}
-Se cuenta con 5 grabaciones de diferentes intérpretes de la obra Aliento/Arrugas. Los intérpretes son: Pablo Somma, Emma Resmini, Claire Chase, Juan Pablo Quinteros y Ulla Suokko. Los archivos de audio se etiquetaron utilizando el software \textit{Sonic Visualizer} dividiendo los fragmentos de audio en 5 clases:
+
+\subsection{Estrategia de resolución}
+
+Se propone la resolución del problema con un enfoque de reconocimiento de patrones. Se procesa el audio como un \textit{Bag of Frames} a partir del computo de descriptores numéricos. El principal desafío y cometido del presente trabajo es encontrar los descriptores que extraigan las diferencias en la naturaleza sonora y permitan la separación de las embocaduras en el espacio de características. 
+\medskip
+
+\subsection{Conjunto de Datos}
+\label{datos}
+Se cuenta con 5 grabaciones de diferentes intérpretes de la obra Aliento/Arrugas. Los intérpretes son: Pablo Somma, Emma Resmini, Claire Chase, Juan Pablo Quinteros y Ulla Suokko. Los archivos de audio se etiquetaron utilizando el software \textit{Sonic Visualiser} \citep{cannam2010sonic} dividiendo los archivos de audio en 5 clases:
 
 \begin{itemize} 
   \item Silencio.
   \item Silencio con respiración del intérprete. 
-  \item Sonido generado con \textit{Blow Hole Covered}.
-  \item Sonido generado con \textit{Breathy Embrochure}.
-  \item Sonido generado con \textit{Normal Embrochure}.
+  \item Sonido generado con \textit{Blow Hole Covert}.
+  \item Sonido generado con \textit{Breathy Embouchure}.
+  \item Sonido generado con \textit{Normal Embouchure}.
 \end{itemize}
 
-Para el presente informe se trabaja con las tres últimas clases de la lista anterior. 
+Las grabaciones de Claire Chase y Juan Pablo Quinteros que se obtuvieron para el presente trabajo sufrieron un proceso de compresión con pérdida, por lo que estos datos reciben un tratamiento distinto. No se utilizan para entrenar los algoritmos de clasificación, solo se utilizan como datos de test. Por lo que folds son de la siguiente forma: 
 
-\section{Análisis de la naturaleza sonora del problema}
+\begin{itemize} 
+  \item Cuando la grabación de test es la de Ulla Suokko, Pablo Somma o Emma Resmini, se entrena con las otras dos restantes. Metodología de \textit{Leave One Out} por su demoninación en Inglés.
+  \item Por otro lado cuando la grabación de test es de Claire Chase o Juan Pablo Quinteros, el conjunto de entrenamiento esta compuesto por las tres grabaciones sin pérdida (i.e. la de Ulla Suokko, Pablo Somma y Emma Resmini).
+\end{itemize}
 
-Se cree que se puede separar con características que describan el nivel de peridicidad de la señal. 
-Primer experimento: con Voicing y ZCR \citep[Chapter~4]{rabiner1978digital}
+En lo que sigue se utilizan únicamente las clases asociadas a cada una de las embocaduras. Queda por fuera del alcance de este trabajo, una etapa de pre-procesamiento para la segmentación del audio en fragmentos de actividad de la flauta y silencios (este problema se conocido como \textit{Activity Detection} por su denominación en Inglés). 
+\medskip 
+
+MOSTRAR LAS PROPORCIONES DE LAS CLASES! NO SEAS MALO!
+
+\section{Análisis físico de la producción de sonido en la flauta}
+
+Primer experimento: con Voicing y ZCR \citep[Capítulo~4]{rabiner1978digital}
 El compositor 
 Color
 Material sonoro
 Embocadura
-
-\section{Estrategia de resolución}
-
-Se trata de resolver el problema con un enfoque de reconocimiento de patrones. Se procesa el audio como un \textit{Bag of Frames} a partir del computo de características. Se utilizan tres algoritmos clásicos de clasificación para evaluación del desempeño de las características en la extracción automática de embocadura a partir de las muestras de audio.
-
    
-\subsection{Experimentos}
+\section{Experimentos y Resultados}
 
-Se evalúa el desempeño de características de diversa naturaleza en la extracción del tipo de embocadura. Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
+Se evalúa el desempeño de características de diversa naturaleza en la extracción del tipo de embocadura. Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical, como se detalla en la Sección \ref{datos}. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
 \medskip
 
 Se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. En todos los casos se utilizan los parámetros por defecto ya que no es objetivo de este trabajo encontrar los valores óptimos de clasificación. La implementación se realiza mediante el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit}. En todos los casos los datos son preprocesados de manera de centrar en cero y escalar la varianza a uno, previo al clasificador.
 \medskip
 
 \subsection{Extración de características}
-Se enlistan a continuación las características que se evalúan la extracción automática de embocadura. Además se describe brevemente sus principales características.
+Se enlistan a continuación las características que se evalúan en la extracción automática de embocadura. Además se describe brevemente sus principales características.
 
-\begin{itemize} 
-  \item Características Clásicas
-  \item MFCC 
-  \item LPC
-  \item Spectral Contrast \citep{jiang2002music}
-\end{itemize}
+\subsubsection{Características Clásicas} 
+
+
+
+\subsubsection{Mel-Frequency Cepstral Coefficients (MFCC) \citep{davis1980comparison}}  
+
+Los \textit{Coeficientes Cepstrales de Frecuencia-Mel} fueron introducidos por \cite{davis1980comparison} en la resolución del problema de reconocimiento del hablante a partir de señales de voz (\textit{Speaker Recognition} su denominación en Inglés). Estos coeficientes como características de un sistema de reconocimiento automático del hablante han demostrado tener de los mejores desempeños \citep[Capítulo~14]{quatieri2002discrete}. A partir de ahí han sido utilizados en diversas problemáticas de clasificación que no involucran señales de voz hablada, con buenos resultados también. Su fortaleza radica en la incorporación del modelado psicoacústico de la audición humana mediante un banco de filtros basados en la escala Mel \citep{stevens1937scale} y la decorrleación que presentan los datos en el dominio de las \textit{quefrencys}, dado por la aplicación de la Transformada Coseno. Son un buen descriptor para la extracción de aspectos tímbricos de la señal.
+\medskip
+
+El cómputo de estas características cuenta con las etapas que se enlistan a continuación de manera conceptual: 
+
+\begin{enumerate}
+	\item División de la señal en fragmentos mediante enventanado.
+	\item Cálculo de la magnitud de la Transformada discreta de Fourier de tiempo corto (STFT).
+	\item Fitrado de la señal con banco de filtros Mel.
+	\item Cálculo de la energía para cada filtro del banco.
+	\item Logaritmo de las energías.
+	\item Transformada Coseno de los valores a la salida del Logaritmo.
+	\item \textit{Liftrado} de la señal resultante en el dominio de las \textit{quefrencys}, luego de la Transformada Coseno. Determina la cantidad de coeficientes, o en otras palabaras la dimensión del espacio de caracterísitcas.
+\end{enumerate}
+
+El cálculo de los coeficientes MFCC tiene los siguientes parámetros determinantes de su desempeño: En primer lugar el largo de las ventanas, que define el compromiso entre resolución temporal y espectral. En segundo lugar la cantidad de filtros del banco de filtros Mel, que se puede pensar como un submuestreo de la resolución espectral ya determinada por el largo del enventanado. Por último el \textit{liftrado} de la señal a la salida de la Transformada Coseno que determina la cantidad de coeficientes efectivos previos al clasificador.
+
+ 
+
+\subsubsection{Linear Prediction Coefficients (LPC)}
+\subsubsection{Spectral Contrast \citep{jiang2002music}}
 
 \subsection{Resultados}
-Accuracy
+PRIMERO MOSTRAR COMPARACIÓN ENTRE FEATURES!!!!
+Y ME QUEDO CON MFCC PORQUE ES UN FIERRO
+PRESENTA DOS PROBLEMÁTICAS: 
+NINGÚN FEATURE LOGRA SEPARAR BREATHY VS. BHC: se prueba solo con esas dos clases y mfcc20 (por simplicidad para el computo y clasificador) 
+-LA CLASE TONAL QUE SERÍA LA MÁS SEPARABLE PRESENTA CONFUSIÓN QUE PODRÍA EVITARSE CON EL VOICING (?) : MFCC es un fierro pero apriori no tiene porque utilizar la información de periodicidad propiamente dicha. Parámetro relevante en la separación de estos tres tipos de embocadura. Se agrega voicing tipo yin \cite{de2002yin}
+ 
+\subsection{Experimentos 2: Refinamiento MFCC}
+Compromiso resolución en frecuencia resolución temporal
 
-Confusión de MFCC:
-
-\subsection{Experimentos 2}
-MFCC es un fierro pero apriori no tiene porque utilizar la información de periodicidad propiamente dicha. Parámetro relevante en la separación de estos tres tipos de embocadura. Se agrega voicing tipo yin \cite{de2002yin}
 
 
 
@@ -165,6 +222,7 @@ Discusión de agregar voicing, ver como mejora la matriz de confusión
 \begin{itemize} 
   \item Segmentación de audio, umbralizando los silencios y las respiraciones 
   \item Salir del bag of frames, para utilizar la redundancia temporal
+  \item Dejar Planteado el sistema completo! diagrama de bloques!
 \end{itemize}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY

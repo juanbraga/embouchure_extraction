@@ -57,7 +57,7 @@ def plot_confusion_matrix(cm, classes,
 
 if __name__=='__main__':
     
-    winlen = 1024
+    winlen = 1024   
     hop = 512    
     
     artist = sys.argv[1]
@@ -143,7 +143,7 @@ if __name__=='__main__':
         if len(sys.argv)>5:
 #        if True:
             print 'Computing MFCC Features with: ' + str(melcoeff) + ' Mel-Coefficients...'
-            extract_features.extract_mfcc(melcoeff, melbands, emb_number='3')
+            extract_features.extract_mfcc(melcoeff, melbands, winlen, hop, emb_number='2')
         
         features_train="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_train.npy"
         features_test="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_test.npy"

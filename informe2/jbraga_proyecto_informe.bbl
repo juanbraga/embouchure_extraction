@@ -1,10 +1,35 @@
 \begin{thebibliography}{}
 
+\bibitem[Candelaria et~al., 2005]{candelaria2005argentine}
+Candelaria, L., Costa-Giomi, E., and Hughes, P. (2005).
+\newblock Argentine music for flute with the employment of extended techniques:
+  an analysis of selected works by eduardo bertola and marcelo toledo.
+
+\bibitem[Cannam et~al., 2010]{cannam2010sonic}
+Cannam, C., Landone, C., and Sandler, M. (2010).
+\newblock Sonic visualiser: An open source application for viewing, analysing,
+  and annotating music audio files.
+\newblock In {\em Proceedings of the 18th ACM international conference on
+  Multimedia}, pages 1467--1468. ACM.
+
+\bibitem[Davis and Mermelstein, 1980]{davis1980comparison}
+Davis, S. and Mermelstein, P. (1980).
+\newblock Comparison of parametric representations for monosyllabic word
+  recognition in continuously spoken sentences.
+\newblock {\em IEEE transactions on acoustics, speech, and signal processing},
+  28(4):357--366.
+
 \bibitem[De~Cheveign{\'e} and Kawahara, 2002]{de2002yin}
 De~Cheveign{\'e}, A. and Kawahara, H. (2002).
 \newblock Yin, a fundamental frequency estimator for speech and music.
 \newblock {\em The Journal of the Acoustical Society of America},
   111(4):1917--1930.
+
+\bibitem[Dick, 1975]{dick1975other}
+Dick, R. (1975).
+\newblock {\em The other flute: a performance manual of contemporary
+  techniques}.
+\newblock Oxford University Press.
 
 \bibitem[Jiang et~al., 2002]{jiang2002music}
 Jiang, D.-N., Lu, L., Zhang, H.-J., Tao, J.-H., and Cai, L.-H. (2002).
@@ -12,15 +37,32 @@ Jiang, D.-N., Lu, L., Zhang, H.-J., Tao, J.-H., and Cai, L.-H. (2002).
 \newblock In {\em Multimedia and Expo, 2002. ICME'02. Proceedings. 2002 IEEE
   International Conference on}, volume~1, pages 113--116. IEEE.
 
-\bibitem[Klapuri and Davy, 2007]{klapuri2007signal}
-Klapuri, A. and Davy, M. (2007).
-\newblock {\em Signal processing methods for music transcription}.
-\newblock Springer Science \& Business Media.
-
 \bibitem[Pedregosa et~al., 2011]{pedregosa2011scikit}
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
   O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., et~al. (2011).
 \newblock Scikit-learn: Machine learning in python.
 \newblock {\em Journal of Machine Learning Research}, 12(Oct):2825--2830.
+
+\bibitem[Piston, 1955]{piston1955orchestration}
+Piston, W. (1955).
+\newblock {\em Orchestration}.
+\newblock Norton.
+
+\bibitem[Quatieri, 2002]{quatieri2002discrete}
+Quatieri, T. (2002).
+\newblock {\em Discrete-time Speech Signal Processing: Principles and
+  Practice}.
+\newblock Prentice-Hall signal processing series. Prentice Hall PTR.
+
+\bibitem[Rabiner and Schafer, 1978]{rabiner1978digital}
+Rabiner, L. and Schafer, R. (1978).
+\newblock {\em Digital Processing of Speech Signals}.
+\newblock Prentice-Hall signal processing series. Prentice-Hall.
+
+\bibitem[Stevens et~al., 1937]{stevens1937scale}
+Stevens, S.~S., Volkmann, J., and Newman, E.~B. (1937).
+\newblock A scale for the measurement of the psychological magnitude pitch.
+\newblock {\em The Journal of the Acoustical Society of America},
+  8(3):185--190.
 
 \end{thebibliography}
