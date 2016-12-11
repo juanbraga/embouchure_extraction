@@ -37,6 +37,16 @@ Jiang, D.-N., Lu, L., Zhang, H.-J., Tao, J.-H., and Cai, L.-H. (2002).
 \newblock In {\em Multimedia and Expo, 2002. ICME'02. Proceedings. 2002 IEEE
   International Conference on}, volume~1, pages 113--116. IEEE.
 
+\bibitem[Klapuri and Davy, 2007]{klapuri2007signal}
+Klapuri, A. and Davy, M. (2007).
+\newblock {\em Signal processing methods for music transcription}.
+\newblock Springer Science \& Business Media.
+
+\bibitem[Makhoul, 1975]{makhoul1975linear}
+Makhoul, J. (1975).
+\newblock Linear prediction: A tutorial review.
+\newblock {\em Proceedings of the IEEE}, 63(4):561--580.
+
 \bibitem[Pedregosa et~al., 2011]{pedregosa2011scikit}
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
   O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., et~al. (2011).

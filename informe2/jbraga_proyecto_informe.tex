@@ -148,32 +148,26 @@ En lo que sigue se utilizan únicamente las clases asociadas a cada una de las e
 
 MOSTRAR LAS PROPORCIONES DE LAS CLASES! NO SEAS MALO!
 
-\section{Análisis físico de la producción de sonido en la flauta}
+\subsection{Extracción de características}
+\label{descriptores}
+Se enlistan a continuación las características que se evalúan en la extracción automática de embocadura. Además se describe brevemente sus principales atributos.
 
-Primer experimento: con Voicing y ZCR \citep[Capítulo~4]{rabiner1978digital}
-El compositor 
-Color
-Material sonoro
-Embocadura
-   
-\section{Experimentos y Resultados}
+\subsubsection{Conjunto de características Espectrales y Armónicas} 
+Se genera un vector compuesto por 5 características acústicas uni-dimensionales, para evaluación del desempeño en la extracción de embocadura. Entre los descriptores se optaron por 4 medidas espectrales y una medida de armónica de la señal de análisis, según la taxonomía de \textit{features} acústicos propuesta en el libro de \cite{klapuri2007signal}. Las características son: 
 
-Se evalúa el desempeño de características de diversa naturaleza en la extracción del tipo de embocadura. Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical, como se detalla en la Sección \ref{datos}. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
-\medskip
+\begin{itemize}
+	\item Voicing: Es una medida de periodicidad de la señal. Es el \textit{feature} armónico del conjunto. Generalmente el Voicing se encuentra embebido en los algoritmos de extracción de pitch. En particular para el presente trabajo se computa como en la referencia: \cite{de2002yin}.   
+	\item Zero-Crossing Rate: Mide la cantidad de cruces por cero de la señal. Si bien es calculado en el dominio del tiempo, es una medida del contenido de alta frecuencia.
+	\item Roll-off: Es el valor de frecuencia para el que la energia espectral acumulada supera una fracción denominada $\lambda$. En general $\lambda$ se elige $95\%$ o $85\%$. 
+	\item Centroid: Es el promedio en los bins de frecuencia ponderado por los valores de magnitud del espectro. Se puede pensar como el centro de masa en el espectro. 
+	\item Bandwidth: Es una medida de la dispersión spectral con respecto al centroide.
+\end{itemize}
 
-Se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. En todos los casos se utilizan los parámetros por defecto ya que no es objetivo de este trabajo encontrar los valores óptimos de clasificación. La implementación se realiza mediante el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit}. En todos los casos los datos son preprocesados de manera de centrar en cero y escalar la varianza a uno, previo al clasificador.
-\medskip
+En todas las medidas acústicas recién mencionada es de relevancia la elección del largo de la ventana análisis, que define el compromiso entre estacionariedad de la señal y resolución en frecuencia.
 
-\subsection{Extración de características}
-Se enlistan a continuación las características que se evalúan en la extracción automática de embocadura. Además se describe brevemente sus principales características.
+\subsubsection{Mel-Frequency Cepstral Coefficients (MFCC)} 
 
-\subsubsection{Características Clásicas} 
-
-
-
-\subsubsection{Mel-Frequency Cepstral Coefficients (MFCC) \citep{davis1980comparison}}  
-
-Los \textit{Coeficientes Cepstrales de Frecuencia-Mel} fueron introducidos por \cite{davis1980comparison} en la resolución del problema de reconocimiento del hablante a partir de señales de voz (\textit{Speaker Recognition} su denominación en Inglés). Estos coeficientes como características de un sistema de reconocimiento automático del hablante han demostrado tener de los mejores desempeños \citep[Capítulo~14]{quatieri2002discrete}. A partir de ahí han sido utilizados en diversas problemáticas de clasificación que no involucran señales de voz hablada, con buenos resultados también. Su fortaleza radica en la incorporación del modelado psicoacústico de la audición humana mediante un banco de filtros basados en la escala Mel \citep{stevens1937scale} y la decorrleación que presentan los datos en el dominio de las \textit{quefrencys}, dado por la aplicación de la Transformada Coseno. Son un buen descriptor para la extracción de aspectos tímbricos de la señal.
+Los \textit{Coeficientes Cepstrales de Frecuencia-Mel} fueron introducidos por \cite{davis1980comparison} en la resolución del problema de reconocimiento del hablante a partir de señales de voz (\textit{Speaker Recognition} su denominación en Inglés). Estos coeficientes como características de un sistema de reconocimiento automático del hablante han demostrado tener de los mejores desempeños \citep[Capítulo~14]{quatieri2002discrete}. A partir de ahí han sido utilizados en diversas problemáticas de clasificación que no involucran señales de voz hablada, con buenos resultados también como es el caso de reconocimiento de instrumentos \citep[Capítulo~6]{klapuri2007signal}. Su fortaleza radica en la incorporación del modelado psicoacústico de la audición humana mediante un banco de filtros basados en la escala Mel \citep{stevens1937scale} y la decorrleación que presentan los datos en el dominio de las \textit{quefrencys}, dado por la aplicación de la Transformada Coseno. Son un buen descriptor para la extracción de aspectos tímbricos de la señal.
 \medskip
 
 El cómputo de estas características cuenta con las etapas que se enlistan a continuación de manera conceptual: 
@@ -189,14 +183,67 @@ El cómputo de estas características cuenta con las etapas que se enlistan a co
 \end{enumerate}
 
 El cálculo de los coeficientes MFCC tiene los siguientes parámetros determinantes de su desempeño: En primer lugar el largo de las ventanas, que define el compromiso entre resolución temporal y espectral. En segundo lugar la cantidad de filtros del banco de filtros Mel, que se puede pensar como un submuestreo de la resolución espectral ya determinada por el largo del enventanado. Por último el \textit{liftrado} de la señal a la salida de la Transformada Coseno que determina la cantidad de coeficientes efectivos previos al clasificador.
+\medskip
 
- 
 
 \subsubsection{Linear Prediction Coefficients (LPC)}
-\subsubsection{Spectral Contrast \citep{jiang2002music}}
+
+La técnica de análisis de señales de tiempo discreto por predicción lineal, tiene su aplicación en diversas áreas del conocimiento. Es parte de un problema más general denominado \textit{identificación de sistemas} desarrollado en el área de control para el análisis de sistemas dinámicos. Supone que la señal de análisis es la salida $s[n]$ de un sistema lineal con entrada $u[n]$. Su fortaleza y versatilidad radica en la estimación de parámetros del sistema lineal que define el problema. 
+\medskip
+
+Su enunciado más general modela la señal de análisis como un proceso \textit{Auto-Regresivo de Media Móvil (ARMA)} \citep{makhoul1975linear}. En otras palabras, supone que la muestra actual de la señal de análisis puede ser expresada como una combinación lineal de las muetras pasadas de la salida, y la muestra actual y pasadas de la entrada: 
+
+\begin{equation}
+\label{eq:arma}
+s[n]=-\sum_{k=1}^p a_ks[n-k]+G\sum_{l=0}^p b_lu[n-l]
+\end{equation}
+
+Ha sido utilizado para la resolución de problemas con señales de audio, en particular existe mucha literatura al respecto con la voz humana. Para voz hablada es de los métodos más poderosos, con diversas aplicaciones. La importancia de este método se basa tanto en la precisión de la estimación de parámetros del modelo de mecanismo de producción de voz, como en su relativo bajo costo computacional \citep[Capítulos~3 y 9]{rabiner1978digital}. 
+\medskip
+
+Alineado con la utilización de LPC en problemas de señales de voz, se supone que es suficiente un modelo todo-polos para la extracción de características en el presente trabajo. De forma matemática a partir de la Ecuación \ref{eq:arma} se escribe como $b_l=0$ con $l=1...p$. Los parámetros relevantes en el computo del descriptor son entonces, en primer lugar $p$ asociado a la cantidad de polos del modelo $AR$ y por otro lado el largo de las ventanas de análisis. Componiendo el vector de características por los coeficientes $a_k$ con $k=1...p$ (ver Ecuación \ref{eq:arma}).
+
+\subsubsection{Octave-based Spectral Contrast}
+
+El \textit{Contraste Espectral por Octavas} fue desarrollado en el trabajo publicado por \cite{jiang2002music}. Tiene como cometido ser una medida de las características relativas del espectro de la señal de análisis. Extrae la diferencia entre la prominencia de los picos en el espectro y los valles en cada octava de análisis por separado. Ha tenido buenos resultados en el problema de clasificación de estilo musical.
+\medskip
+
+El cómputo de estas características tiene las siguientes etapas, que se enuncian de forma conceptual:
+
+\begin{enumerate}
+	\item División de la señal en fragmentos mediante enventanado.
+	\item Cálculo de la magnitud de la Transformada discreta de Fourier de tiempo corto (STFT).
+	\item Fitrado de la señal con banco de filtros por octava.
+	\item Cálculo de la diferencia entre la energía en un entorno de los picos y de los valles en cada una de las octavas.
+	\item Logaritmo de las diferencias del paso anterior.
+	\item Transformada \textit{Karhunen-Loeve} para representación de las características en base ortonormal y decorrelación entre las dimensiones.
+\end{enumerate}
+
+A diferencia de \textit{MFCC} y \textit{LPC} que realizan un promediado de la información espectral, estos descriptores extraen la información relativa, mediante la comparación de picos y valles por octava. Los parámetros relevantes son en primer lugar el largo de la ventana de análsis, el entorno de los picos y valles denominado $\alpha$ en la literatura, y por último el número de octavas. 
+
+\subsection{Primer análisis de la naturaleza acústica del problema}
+
+De los descripto en la Sección \ref{embocadura}
+   
+\section{Experimentos}
+
+Se evalúa la capacidad de los descriptores presentados en la Sección \ref{descriptores} en la separación de embocaduras. Para esto se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. En todos los casos se utilizan los parámetros por defecto ya que no es objetivo de este trabajo encontrar los valores óptimos de clasificación. La implementación se realiza mediante el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit}. En todos los casos los datos son preprocesados de manera de centrar en cero y escalar la varianza a uno, previo al clasificador.
+\medskip
+
+Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical, como se detalla en la Sección \ref{datos}. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
+\medskip
+
+\subsection{Primer experimento}
 
 \subsection{Resultados}
+
+En lo que sigue se muestra el resultado del desempeño de los descriptores detallados en la Sección \ref{descriptores} para la extracción del tipo de embocadura.
+
 PRIMERO MOSTRAR COMPARACIÓN ENTRE FEATURES!!!!
+LPC: Carece de modelado fisico del problema que pueda validar y dar pistas de los parámetros relevantes
+SPECTRAL AND HARMONIC FEATURES: redundancia!!!!!!! algún approach de decorrelación podría ayudar, pero hablar de la importancia del knowledge!
+Spectral contrast: anda bien y a priori podría ser mas suitable para el problema, pero debido a q mfcc funcionó mejor se sigue adelante
+
 Y ME QUEDO CON MFCC PORQUE ES UN FIERRO
 PRESENTA DOS PROBLEMÁTICAS: 
 NINGÚN FEATURE LOGRA SEPARAR BREATHY VS. BHC: se prueba solo con esas dos clases y mfcc20 (por simplicidad para el computo y clasificador) 
