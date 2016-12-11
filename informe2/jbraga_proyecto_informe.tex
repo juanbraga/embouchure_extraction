@@ -152,18 +152,7 @@ MOSTRAR LAS PROPORCIONES DE LAS CLASES! NO SEAS MALO!
 \label{descriptores}
 Se enlistan a continuación las características que se evalúan en la extracción automática de embocadura. Además se describe brevemente sus principales atributos.
 
-\subsubsection{Conjunto de características Espectrales y Armónicas} 
-Se genera un vector compuesto por 5 características acústicas uni-dimensionales, para evaluación del desempeño en la extracción de embocadura. Entre los descriptores se optaron por 4 medidas espectrales y una medida de armónica de la señal de análisis, según la taxonomía de \textit{features} acústicos propuesta en el libro de \cite{klapuri2007signal}. Las características son: 
 
-\begin{itemize}
-	\item Voicing: Es una medida de periodicidad de la señal. Es el \textit{feature} armónico del conjunto. Generalmente el Voicing se encuentra embebido en los algoritmos de extracción de pitch. En particular para el presente trabajo se computa como en la referencia: \cite{de2002yin}.   
-	\item Zero-Crossing Rate: Mide la cantidad de cruces por cero de la señal. Si bien es calculado en el dominio del tiempo, es una medida del contenido de alta frecuencia.
-	\item Roll-off: Es el valor de frecuencia para el que la energia espectral acumulada supera una fracción denominada $\lambda$. En general $\lambda$ se elige $95\%$ o $85\%$. 
-	\item Centroid: Es el promedio en los bins de frecuencia ponderado por los valores de magnitud del espectro. Se puede pensar como el centro de masa en el espectro. 
-	\item Bandwidth: Es una medida de la dispersión spectral con respecto al centroide.
-\end{itemize}
-
-En todas las medidas acústicas recién mencionada es de relevancia la elección del largo de la ventana análisis, que define el compromiso entre estacionariedad de la señal y resolución en frecuencia.
 
 \subsubsection{Mel-Frequency Cepstral Coefficients (MFCC)} 
 
@@ -203,7 +192,20 @@ Ha sido utilizado para la resolución de problemas con señales de audio, en par
 
 Alineado con la utilización de LPC en problemas de señales de voz, se supone que es suficiente un modelo todo-polos para la extracción de características en el presente trabajo. De forma matemática a partir de la Ecuación \ref{eq:arma} se escribe como $b_l=0$ con $l=1...p$. Los parámetros relevantes en el computo del descriptor son entonces, en primer lugar $p$ asociado a la cantidad de polos del modelo $AR$ y por otro lado el largo de las ventanas de análisis. Componiendo el vector de características por los coeficientes $a_k$ con $k=1...p$ (ver Ecuación \ref{eq:arma}).
 
-\subsubsection{Octave-based Spectral Contrast}
+\subsubsection{Conjunto de características Espectrales y Armónicas} 
+Se genera un vector compuesto por 5 características acústicas uni-dimensionales, para evaluación del desempeño en la extracción de embocadura. Entre los descriptores se optaron por 4 medidas espectrales y una medida de armónica de la señal de análisis, según la taxonomía de \textit{features} acústicos propuesta en el libro de \cite{klapuri2007signal}. Las características son: 
+
+\begin{itemize}
+	\item Voicing: Es una medida de periodicidad de la señal. Es el \textit{feature} armónico del conjunto. Generalmente el Voicing se encuentra embebido en los algoritmos de extracción de pitch. En particular para el presente trabajo se computa como en la referencia: \cite{de2002yin}.   
+	\item Zero-Crossing Rate: Mide la cantidad de cruces por cero de la señal. Si bien es calculado en el dominio del tiempo, es una medida del contenido de alta frecuencia.
+	\item Roll-off: Es el valor de frecuencia para el que la energia espectral acumulada supera una fracción denominada $\lambda$. En general $\lambda$ se elige $95\%$ o $85\%$. 
+	\item Centroid: Es el promedio en los bins de frecuencia ponderado por los valores de magnitud del espectro. Se puede pensar como el centro de masa en el espectro. 
+	\item Bandwidth: Es una medida de la dispersión spectral con respecto al centroide.
+\end{itemize}
+
+En todas las medidas acústicas recién mencionada es de relevancia la elección del largo de la ventana análisis, que define el compromiso entre estacionariedad de la señal y resolución en frecuencia.
+
+\subsubsection{Octave-based Spectral Contrast (SC)}
 
 El \textit{Contraste Espectral por Octavas} fue desarrollado en el trabajo publicado por \cite{jiang2002music}. Tiene como cometido ser una medida de las características relativas del espectro de la señal de análisis. Extrae la diferencia entre la prominencia de los picos en el espectro y los valles en cada octava de análisis por separado. Ha tenido buenos resultados en el problema de clasificación de estilo musical.
 \medskip
@@ -270,13 +272,8 @@ A diferencia de \textit{MFCC} y \textit{LPC} que realizan un promediado de la in
 %\end{figure}
 %
 %
-%\begin{figure}[H]
-%\begin{center}
-%\includegraphics[width=1\textwidth]{normalemb_features} 
-%\caption{Visualización de un fragmento de la interpretación de Emma Resmini con embocadura \textit{Normal Embrochure}. Se observa en celeste el \textit{Voicing} y en blanco \textit{Zero-Crossing Rate}.}
-%\label{fig:normalemb_features}
-%\end{center}
-%\end{figure}
+
+
    
 \section{Experimentos}
 
@@ -286,36 +283,72 @@ Se evalúa la capacidad de los descriptores presentados en la Sección \ref{desc
 Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical, como se detalla en la Sección \ref{datos}. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
 \medskip
 
-\subsection{Primer experimento}
+\subsection{Primer experimento: Mejor descriptor para extracción de embocadura}
 
-El propósito es cuantificar el poder de separación de las características y determinar cual tiene el mejor desempeño. Para tener una noción general del comportamiento de los descriptores, en todos los casos se utiliza más de una combinación de parámetros. Se eligieron de forma que e cree suficiente para descartar los de menor desempeño. A continuación se enlistan los parámetros utilizados en cada caso.
+El propósito es cuantificar el poder de separación de las características y determinar cual tiene el mejor desempeño. Para tener una noción general del comportamiento de los descriptores, en todos los casos se utiliza más de una combinación de parámetros. Se eligieron de forma que sea suficiente para descartar los de menor desempeño. A continuación se enlistan los parámetros utilizados en cada caso.
 
 \begin{itemize}
-	\item Característcas Espectrales y Armónicas:
+	\item Característcas Espectrales y Armónicas: Se varían los largos de ventana y saltos de la siguiente forma (se detallan respectivamente): (a) $11ms$ y $50\%$ de salto (256-128 muestras), (b) $23ms$ y $50\%$  (1024-512 muestras) y por último (c) $46ms$ y $50\%$  (2048-1024 muestras). En todos los casos anteriores se utilizó: 
 	\begin{itemize}
 		\item Voicing: Número de retardos: 250 muestras.
 		\item Roll-off: $\lambda=85\%$
 		\item Centroid, Bandwith y Zero-Crossing Rate: quedan definidos por el largo de la ventana de análisis y el salto.
 	\end{itemize}
-	\item MFCC: Se computa con 40 bandas Mel y se liftra la señal para obtener 20 coeficientes.
-	\item LPC
+	\item MFCC: Se computan con ventana de análisis de $23ms$ y salto del $50\%$, 40 bandas Mel y se liftra la señal para obtener: (a) 20 coeficientes, (b) 30 coeficientes y (c) 40 coeficientes.
+	\item LPC: Se computan con ventana de análisis de $23ms$ y salto del $50\%$ y numero de polos: (a) 10, (b) 20 y (c) 40.
+	\item SC: Se computan con ventana de análisis de $23ms$ y salto del $50\%$ y numero de bandas: (a) 3 y (b) 6.
 \end{itemize}
 
 \subsection{Resultados}
 
 En lo que sigue se muestra el resultado del desempeño de los descriptores detallados en la Sección \ref{descriptores} para la extracción del tipo de embocadura.
+\medskip
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp1_comparacion} 
+\caption{Boxplot para el accuracy de los algoritmos de clasificación. Se muestra los resultados de forma independiente por algoritmo de clasificación y según los parámetros de las características}
+\label{fig:exp1_comparacion}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp1_artista} 
+\caption{Boxplot para el accuracy de los algoritmos de clasificación. Se muestra los resultados de forma independiente por artista (fold) y según los parámetros de las características.}
+\label{fig:exp1_artista}
+\end{center}
+\end{figure}
 
 PRIMERO MOSTRAR COMPARACIÓN ENTRE FEATURES!!!!
 LPC: Carece de modelado fisico del problema que pueda validar y dar pistas de los parámetros relevantes
 SPECTRAL AND HARMONIC FEATURES: redundancia!!!!!!! algún approach de decorrelación podría ayudar, pero hablar de la importancia del knowledge!
 Spectral contrast: anda bien y a priori podría ser mas suitable para el problema, pero debido a q mfcc funcionó mejor se sigue adelante
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp1_confusion} 
+\caption{Matrices de confusión para las características MFCC, SC, y Características Espectrales y Armónicas de izquierda a derecha respectivamente. Para todos los casos el algoritmo de clasificación es KNN.}
+\label{fig:exp1_confusion}
+\end{center}
+\end{figure}
+
+\subsection{Segundo experimento: Blow Hole Covert Vs. Breathy}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp1_confusion2} 
+\caption{Matrices de confusión para las clases \textit{BHC} Vs. \textit{Breathy} generadas con características MFCC y el clasificador KNN.}
+\label{fig:exp1_confusion2}
+\end{center}
+\end{figure}
+
 Y ME QUEDO CON MFCC PORQUE ES UN FIERRO
 PRESENTA DOS PROBLEMÁTICAS: 
 NINGÚN FEATURE LOGRA SEPARAR BREATHY VS. BHC: se prueba solo con esas dos clases y mfcc20 (por simplicidad para el computo y clasificador) 
 -LA CLASE TONAL QUE SERÍA LA MÁS SEPARABLE PRESENTA CONFUSIÓN QUE PODRÍA EVITARSE CON EL VOICING (?) : MFCC es un fierro pero apriori no tiene porque utilizar la información de periodicidad propiamente dicha. Parámetro relevante en la separación de estos tres tipos de embocadura. Se agrega voicing tipo yin \cite{de2002yin}
  
-\subsection{Experimentos 2: Refinamiento MFCC}
+\subsection{Tercer Experimento: Refinamiento de MFCC}
 Compromiso resolución en frecuencia resolución temporal
 
 

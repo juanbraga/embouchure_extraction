@@ -24,8 +24,6 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Definici\IeC {\'o}n del Problema}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Estrategia de resoluci\IeC {\'o}n}{2}}
 \citation{cannam2010sonic}
-\citation{klapuri2007signal}
-\citation{de2002yin}
 \citation{davis1980comparison}
 \citation{quatieri2002discrete}
 \citation{klapuri2007signal}
@@ -34,22 +32,33 @@
 \newlabel{datos}{{2.2}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Extracci\IeC {\'o}n de caracter\IeC {\'\i }sticas}{3}}
 \newlabel{descriptores}{{2.3}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Conjunto de caracter\IeC {\'\i }sticas Espectrales y Arm\IeC {\'o}nicas}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Mel-Frequency Cepstral Coefficients (MFCC)}{3}}
 \citation{makhoul1975linear}
 \citation{rabiner1978digital}
-\citation{jiang2002music}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Mel-Frequency Cepstral Coefficients (MFCC)}{4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Linear Prediction Coefficients (LPC)}{4}}
-\newlabel{eq:arma}{{1}{4}}
-\citation{pedregosa2011scikit}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.4}Octave-based Spectral Contrast}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Experimentos}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Primer experimento}{5}}
+\citation{klapuri2007signal}
 \citation{de2002yin}
+\citation{jiang2002music}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Linear Prediction Coefficients (LPC)}{4}}
+\newlabel{eq:arma}{{1}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Conjunto de caracter\IeC {\'\i }sticas Espectrales y Arm\IeC {\'o}nicas}{4}}
+\citation{pedregosa2011scikit}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.4}Octave-based Spectral Contrast (SC)}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimentos}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Primer experimento: Mejor descriptor para extracci\IeC {\'o}n de embocadura}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Resultados}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimentos 2: Refinamiento MFCC}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Trabajo a futuro}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Boxplot para el accuracy de los algoritmos de clasificaci\IeC {\'o}n. Se muestra los resultados de forma independiente por algoritmo de clasificaci\IeC {\'o}n y seg\IeC {\'u}n los par\IeC {\'a}metros de las caracter\IeC {\'\i }sticas}}{6}}
+\newlabel{fig:exp1_comparacion}{{2}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Boxplot para el accuracy de los algoritmos de clasificaci\IeC {\'o}n. Se muestra los resultados de forma independiente por artista (fold) y seg\IeC {\'u}n los par\IeC {\'a}metros de las caracter\IeC {\'\i }sticas.}}{6}}
+\newlabel{fig:exp1_artista}{{3}{6}}
+\citation{de2002yin}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Matrices de confusi\IeC {\'o}n para las caracter\IeC {\'\i }sticas MFCC, SC, y Caracter\IeC {\'\i }sticas Espectrales y Arm\IeC {\'o}nicas de izquierda a derecha respectivamente. Para todos los casos el algoritmo de clasificaci\IeC {\'o}n es KNN.}}{7}}
+\newlabel{fig:exp1_confusion}{{4}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Segundo experimento: Blow Hole Covert Vs. Breathy}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Matrices de confusi\IeC {\'o}n para las clases \textit  {BHC} Vs. \textit  {Breathy} generadas con caracter\IeC {\'\i }sticas MFCC y el clasificador KNN.}}{7}}
+\newlabel{fig:exp1_confusion2}{{5}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Tercer Experimento: Refinamiento de MFCC}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Trabajo a futuro}{7}}
 \bibstyle{apalike}
 \bibdata{biblio}
 \bibcite{candelaria2005argentine}{{1}{2005}{{Candelaria et~al.}}{{}}}

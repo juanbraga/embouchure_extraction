@@ -143,7 +143,7 @@ if __name__=='__main__':
         if len(sys.argv)>5:
 #        if True:
             print 'Computing MFCC Features with: ' + str(melcoeff) + ' Mel-Coefficients...'
-            extract_features.extract_mfcc(melcoeff, melbands, winlen, hop, emb_number='2')
+            extract_features.extract_mfcc(melcoeff, melbands, winlen, hop, emb_number='3')
         
         features_train="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_train.npy"
         features_test="../features/" + artist + "_mfcc_" + str(melcoeff) + str(melbands) + "_test.npy"
@@ -171,7 +171,7 @@ if __name__=='__main__':
             
         if len(sys.argv)>4:  
             print 'Computing Spectral Contrast Features with: ' + str(nbands) + ' analysis bands...'
-            extract_features.extract_spectral_contrast(nbands, quantile, emb_number='2')
+            extract_features.extract_spectral_contrast(nbands, quantile, emb_number='3')
         
         features_train="../features/" + artist + "_spectral_contrast_" + str(nbands) + "_train.npy"
         features_test="../features/" + artist + "_spectral_contrast_" + str(nbands) + "_test.npy"
@@ -190,6 +190,7 @@ if __name__=='__main__':
         prediction_file="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_prediction.npy"    
         prediction_csv="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_prediction.csv" 
         proba_csv="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_proba.csv"
+        proba_file="../prediction/" + artist + "_spectral_contrast_" + str(nbands) + "_proba.npy"
 
     if feature_name == 'SPECTRAL':
         
@@ -253,18 +254,16 @@ if __name__=='__main__':
     svm_score = lin_svm.score(X_test, y_test) 
     print 'SVM (Linear Kernel): ' + str(svm_score)
 
-    X_prediction = rf.predict(X_test)
-    X_prediction_proba = rf.predict_proba(X_test)
+    X_prediction = knn.predict(X_test)
+    X_prediction_proba = knn.predict_proba(X_test)
     #%%
     
     time_test=time_test.reshape((len(time_test),1))
     y_test_aux=y_test.reshape((len(time_test),1))
     X_prediction_proba = np.concatenate((X_prediction_proba, time_test, y_test_aux),axis=1)
-    
-  
 
-    if feature_name!='LPC':    
-        print 'Saving prediction vector with Random Forest...'        
+    if feature_name=='MFCC':    
+        print 'Saving prediction vector with KNN...'        
         aux_vec = np.c_[(X_prediction, y_test, time_test)]
         np.save(prediction_file, aux_vec)
         np.savetxt(prediction_csv, aux_vec)
