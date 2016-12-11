@@ -98,7 +98,7 @@ La embocadura es un elemento determinante del material sonoro ejecutado, siendo 
 Aliento/Arrugas es una obra para flauta traversa solista, compuesta por el argentino Marcelo Toledo. Incluye una cantidad de sonoridades exóticas mediante la ejecución del insturmento a través de técnicas extendidas. Según el compositor la intención detrás es la exploración sonora del instrumento utilizando la respiración del intérprete como elemento de expresión orgánica \citep{candelaria2005argentine}.  
 \medskip
 
-El compositor utiliza como recurso expresivo tres tipos de embocadura para ejecución del instrumento. Se diferencian por el ángulo de la flauta (ver \ref{embocadura}), en otras palabras el ángulo entre el flujo de aire frente al bisel de la embocadura. Se enlista a continuación los nombres, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa la notación utilizada por el compositor en la partitura de Aliento/Arrugas.
+El compositor utiliza como recurso expresivo tres tipos de embocadura para ejecución del instrumento. Se diferencian por cambios en la posición de los labios y el ángulo de la flauta (ver \ref{embocadura}), en otras palabras el ángulo entre el flujo de aire frente al bisel de la embocadura. Se enlista a continuación los nombres, manteniendo su denominación en Inglés (idioma utilizado en la partitura de la obra). Además en la Figura \ref{fig:embocaduras} se observa la notación utilizada por el compositor en la partitura de Aliento/Arrugas.
 
 \begin{itemize}
   \item \textit{Normal Embouchure}: Embocadura clásica de la flauta, donde el flujo de aire frente al bisel de la embocadura genera la exitación con pulsos períodicos de la columna de aire. 
@@ -221,9 +221,62 @@ El cómputo de estas características tiene las siguientes etapas, que se enunci
 
 A diferencia de \textit{MFCC} y \textit{LPC} que realizan un promediado de la información espectral, estos descriptores extraen la información relativa, mediante la comparación de picos y valles por octava. Los parámetros relevantes son en primer lugar el largo de la ventana de análsis, el entorno de los picos y valles denominado $\alpha$ en la literatura, y por último el número de octavas. 
 
-\subsection{Primer análisis de la naturaleza acústica del problema}
-
-De los descripto en la Sección \ref{embocadura}
+%\subsection{Análisis de la naturaleza acústica del problema}
+%
+%Las tres embocaduras utilizadas en Aliento/Arrugas tienen como propósito generar variación en el material sonoro de la pieza. Los parámetros acústicos que 
+%
+%\subsubsection{Resultados}
+%Para el cálculo se utilizan ventanas de análisis de $23ms$ y saltos del $50\%$ del largo de la ventana. Se dejaron afuera del análisis las clases: \textit{Silencio} y \textit{Silencio con respiración del intérprete}.
+%\medskip
+%
+%A continuación en la Figuras \ref{fig:histogramas_artista} y \ref{fig:comparative} se observa el espacio de características con distinción por clase para los diferentes intérpretes. Se puede observar que la \textit{Normal Embrochure} es separable frente al resto con estos cálculos. No es así el caso de las embocaduras \textit{Blow Hole Covered} y \textit{Breathy Embrocuhre}.
+%
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=1\textwidth]{histograms_artist} 
+%\caption{Espacio de características etiquetado por clases para cada uno de las interpretaciones.}
+%\label{fig:histogramas_artista}
+%\end{center}
+%\end{figure}
+%
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=1\textwidth]{comparative} 
+%\caption{Comparación clase vs. clase en el espacio de características.}
+%\label{fig:comparative}
+%\end{center}
+%\end{figure}
+%
+%\newpage
+%
+%
+%Se observa además en las Figuras \ref{fig:bhc_features}, \ref{fig:breathyemb_features} y \ref{fig:normalemb_features} el comportamiento temporal de las características \textit{Voicing} y \textit{Zero-Crossing Rate} superpuestas con el espectrograma, para tres fragmentos de la interpretación de Emma Resmini. Corresponden a \textit{Blow Hole Covered}, \textit{Breathy Embrochure} y \textit{Normal Embrochure} respectivamente. Se corrobora lo dicho anteriormente sobre la separabilidad entre clases.
+%
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=1\textwidth]{bhc_features} 
+%\caption{Visualización de un fragmento de la interpretación de Emma Resmini con embocadura \textit{Blow Hole Covered}. Se observa en celeste el \textit{Voicing} y en blanco \textit{Zero-Crossing Rate}.}
+%\label{fig:bhc_features}
+%\end{center}
+%\end{figure}
+%
+%
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=1\textwidth]{breathyemb_features} 
+%\caption{Visualización de un fragmento de la interpretación de Emma Resmini con embocadura \textit{Breathy Embrochure}. Se observa en celeste el \textit{Voicing} y en blanco \textit{Zero-Crossing Rate}.}
+%\label{fig:breathyemb_features}
+%\end{center}
+%\end{figure}
+%
+%
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=1\textwidth]{normalemb_features} 
+%\caption{Visualización de un fragmento de la interpretación de Emma Resmini con embocadura \textit{Normal Embrochure}. Se observa en celeste el \textit{Voicing} y en blanco \textit{Zero-Crossing Rate}.}
+%\label{fig:normalemb_features}
+%\end{center}
+%\end{figure}
    
 \section{Experimentos}
 
@@ -234,6 +287,19 @@ Todos los experimentos se realizan con \textit{5-fold cross validation} donde lo
 \medskip
 
 \subsection{Primer experimento}
+
+El propósito es cuantificar el poder de separación de las características y determinar cual tiene el mejor desempeño. Para tener una noción general del comportamiento de los descriptores, en todos los casos se utiliza más de una combinación de parámetros. Se eligieron de forma que e cree suficiente para descartar los de menor desempeño. A continuación se enlistan los parámetros utilizados en cada caso.
+
+\begin{itemize}
+	\item Característcas Espectrales y Armónicas:
+	\begin{itemize}
+		\item Voicing: Número de retardos: 250 muestras.
+		\item Roll-off: $\lambda=85\%$
+		\item Centroid, Bandwith y Zero-Crossing Rate: quedan definidos por el largo de la ventana de análisis y el salto.
+	\end{itemize}
+	\item MFCC: Se computa con 40 bandas Mel y se liftra la señal para obtener 20 coeficientes.
+	\item LPC
+\end{itemize}
 
 \subsection{Resultados}
 
@@ -260,6 +326,8 @@ Se identifica nuevamente el problema en la separación
 Comparar confusión entre 2x2 y 3x3 en la separación de BHC y BREATHY
 
 Discusión de agregar voicing, ver como mejora la matriz de confusión 
+
+Hablar que la confusión puede ser por articulaciones similares con distinta embocadura, mirar mariana stratta
 
 \subsubsection{}
 
