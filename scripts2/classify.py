@@ -112,7 +112,7 @@ if __name__=='__main__':
         features_train="../features/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_train.npy"
         features_test="../features/" + artist + "_mfccvoicing_" + str(melcoeff) + str(melbands) + "_test.npy"
         
-#        test=np.load(features_test)
+        test=np.load(features_test)
         train=np.load(features_train)
 
         #con voicing

@@ -71,13 +71,31 @@
 
 \maketitle 
 
+
+\begin{abstract}
+El presente trabajo tiene como objetivo principal la evaluación de características de diversa naturaleza, en la extracción automática de embocadura a partir de muestras de audio. Se trabaja sobre Aliento/Arrugas, obra para flauta con técnicas extendidas, del compositor contemporáneo Marcelo Toledo. 
+\end{abstract}
+
+
+
 %----------------------------------------------------------------------------------------
 %	INTRODUCCIÓN
 %----------------------------------------------------------------------------------------
 
+
+
 \section{Introducción}
-\subsection{La Flauta Traversa}
-Técnicas extendidas y técnicas tradicionales papurri
+
+La Flauta traversa, perteneciente a la famila de \textit{Instrumentos de Madera}, es la única que no utiliza \textit{lengüeta} o \textit{caña} en su embocadura. Su mecanísmo de producción de la exitación periódica difiere del resto, ya que esta basado en la turbulencia generada por la colisión del flujo del aire con el bisel de su agüjero. La exitación periodíca pone a resonar a la columna de aire, y la altura es definida mediante la posición de las llaves del instrumento, característica que comparte con el resto de la familia de \textit{Maderas}. 
+\medskip 
+
+Además de la ejecución de alturas como material sonoro, los compositores académicos contemporáneos, exploran las capacidades sónicas del instrumento. Actualmente existen un montón de técnicas modernas, claramente definidas y reproducibles a las que se denominan extendidas. Diversos recursos técnicos forman parte del repertorio actual de la flauta y los intérpretes deben expandir sus habilidades con el instrumento.
+\medskip
+
+La extracción de contenido musical en este tipo de obras no se abarca solamente con estimación de alturas y duraciones, a diferencia del lenguaje tradicional de la flauta. El repertorio contemporáneo define un área del \textit{MIR} (por su sigla en inglés \textit{Music Information Retrieval}) desafiante y de espectro más amplio. Además es un área de estudio donde no existe mucho camino andando, habiendo tierra fértil para explorar y lograr contribuciones. 
+\medskip
+
+El cometido del presente trabajo es el acercamiento a este tipo de problemas, con objetivo la extracción automática de embocadura a partir de grabaciones de la obra contemporánea Aliento/Arrugas. En lo que sigue, Sección \ref{embocadura}, se define con más detalle el término embocadura, y se hace un análisis de sus principales implicancias en el sonido de la flauta. Además en la Sección \ref{aliento} se describe en mayor profunidad la pieza musical Aliento/Arrugas. Luego en la Seccion \ref{problema} se define el problema y la estrategia de resolucion, se detalla la base de datos y se da un breve marco teórico de las características a utilizar. La Sección \ref{experimento} esta dedicada a comentar los resultados y algunas consideraciones, para finalmente concluir el trabajo en el Sección \ref{conclusiones}.
 
 \subsection{Embocadura}
 \label{embocadura}
@@ -95,6 +113,7 @@ La embocadura es un elemento determinante del material sonoro ejecutado, siendo 
 \medskip 
 
 \subsection{Aliento/Arrugas de Marcelo Toledo}
+\label{aliento}
 Aliento/Arrugas es una obra para flauta traversa solista, compuesta por el argentino Marcelo Toledo. Incluye una cantidad de sonoridades exóticas mediante la ejecución del insturmento a través de técnicas extendidas. Según el compositor la intención detrás es la exploración sonora del instrumento utilizando la respiración del intérprete como elemento de expresión orgánica \citep{candelaria2005argentine}.  
 \medskip
 
@@ -109,13 +128,16 @@ El compositor utiliza como recurso expresivo tres tipos de embocadura para ejecu
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.9\textwidth]{embocaduras} 
+\includegraphics[width=0.6\textwidth]{embocaduras} 
 \caption{Notación de las embocaduras se observa en la parte superior de los sistemas. (a) \textit{Blow Hole Covert}. (b) \textit{Breathy Embouchure}. (c) \textit{Normal Embouchure}. Fragmentos extraídos de la partitura de Aliento/Arrugas.}
 \label{fig:embocaduras}
 \end{center}
 \end{figure}
 
+\newpage
+
 \section{Definición del Problema}
+\label{problema}
 Teniendo en cuenta que la embocadura es un elemento determinante del material sonoro ejecutado perceptible de forma auditiva (Sección \ref{embocadura}), se propone la extracción automática del tipo de embocadura a través del análisis computacional de grabaciones de la obra. 
 
 
@@ -138,15 +160,27 @@ Se cuenta con 5 grabaciones de diferentes intérpretes de la obra Aliento/Arruga
 
 Las grabaciones de Claire Chase y Juan Pablo Quinteros que se obtuvieron para el presente trabajo sufrieron un proceso de compresión con pérdida, por lo que estos datos reciben un tratamiento distinto. No se utilizan para entrenar los algoritmos de clasificación, solo se utilizan como datos de test. Por lo que folds son de la siguiente forma: 
 
+
+
 \begin{itemize} 
   \item Cuando la grabación de test es la de Ulla Suokko, Pablo Somma o Emma Resmini, se entrena con las otras dos restantes. Metodología de \textit{Leave One Out} por su demoninación en Inglés.
   \item Por otro lado cuando la grabación de test es de Claire Chase o Juan Pablo Quinteros, el conjunto de entrenamiento esta compuesto por las tres grabaciones sin pérdida (i.e. la de Ulla Suokko, Pablo Somma y Emma Resmini).
 \end{itemize}
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{dataset} 
+\caption{Detalle de la composición del \textit{bag of frames} de embocaduras.}
+\label{fig:dataset}
+\end{center}
+\end{figure}
+
+En la Figura \ref{fig:dataset} se observa en detalle las cantidades de frames de embocaduras en la base de datos. Se puede observar según el intérprete la proporción de las clases. Se observa que la clase mayoritaria es la \textit{Normal embouchure} de numero comparable \textit{Blow Hole Covert} y sensiblemente menor es la dada por la embocadura \textit{Breathy}.
+
+\medskip
 En lo que sigue se utilizan únicamente las clases asociadas a cada una de las embocaduras. Queda por fuera del alcance de este trabajo, una etapa de pre-procesamiento para la segmentación del audio en fragmentos de actividad de la flauta y silencios (este problema se conocido como \textit{Activity Detection} por su denominación en Inglés). 
 \medskip 
 
-MOSTRAR LAS PROPORCIONES DE LAS CLASES! NO SEAS MALO!
 
 \subsection{Extracción de características}
 \label{descriptores}
@@ -272,10 +306,9 @@ A diferencia de \textit{MFCC} y \textit{LPC} que realizan un promediado de la in
 %\end{figure}
 %
 %
-
-
    
 \section{Experimentos}
+\label{experimento}
 
 Se evalúa la capacidad de los descriptores presentados en la Sección \ref{descriptores} en la separación de embocaduras. Para esto se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. En todos los casos se utilizan los parámetros por defecto ya que no es objetivo de este trabajo encontrar los valores óptimos de clasificación. La implementación se realiza mediante el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit}. En todos los casos los datos son preprocesados de manera de centrar en cero y escalar la varianza a uno, previo al clasificador.
 \medskip
@@ -284,6 +317,7 @@ Todos los experimentos se realizan con \textit{5-fold cross validation} donde lo
 \medskip
 
 \subsection{Primer experimento: Mejor descriptor para extracción de embocadura}
+\label{experimento1}
 
 El propósito es cuantificar el poder de separación de las características y determinar cual tiene el mejor desempeño. Para tener una noción general del comportamiento de los descriptores, en todos los casos se utiliza más de una combinación de parámetros. Se eligieron de forma que sea suficiente para descartar los de menor desempeño. A continuación se enlistan los parámetros utilizados en cada caso.
 
@@ -307,70 +341,138 @@ En lo que sigue se muestra el resultado del desempeño de los descriptores detal
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=1\textwidth]{exp1_comparacion} 
-\caption{Boxplot para el accuracy de los algoritmos de clasificación. Se muestra los resultados de forma independiente por algoritmo de clasificación y según los parámetros de las características}
+\caption{Boxplot para el accuracy de los algoritmos de clasificación. Se muestra los resultados de forma independiente por algoritmo de clasificación y según los parámetros de las características.}
 \label{fig:exp1_comparacion}
 \end{center}
 \end{figure}
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=1\textwidth]{exp1_artista} 
-\caption{Boxplot para el accuracy de los algoritmos de clasificación. Se muestra los resultados de forma independiente por artista (fold) y según los parámetros de las características.}
-\label{fig:exp1_artista}
-\end{center}
-\end{figure}
+Se observa en la Figura \ref{fig:exp1_comparacion} el comportamiento de las características en la separación de las clases del problema. Como medida de desmpeño se utiliza la razón entre los frames bien clasificados y el total, deonminada en Inglés como \textit{accuracy}. Además en el eje horizontal se detalla el algoritmo de clasificación utilizado y en colores las distintas combinaciones de parámetros en la extracción de características. 
+\medskip
 
-PRIMERO MOSTRAR COMPARACIÓN ENTRE FEATURES!!!!
-LPC: Carece de modelado fisico del problema que pueda validar y dar pistas de los parámetros relevantes
-SPECTRAL AND HARMONIC FEATURES: redundancia!!!!!!! algún approach de decorrelación podría ayudar, pero hablar de la importancia del knowledge!
-Spectral contrast: anda bien y a priori podría ser mas suitable para el problema, pero debido a q mfcc funcionó mejor se sigue adelante
+En la Figura \ref{fig:exp1_comparacion} se puede observar claramente que \textit{LPC} es el que presenta peores resultados. Además de forma cualitativa se puede decir que la variación del número de polos del modelo, no afecta considerablemente el desempeño. Como resultado anecdótico a los fines del presente trabajo, se tiene que existe una mejora sustancial en el rendimiento de estos \textit{features} con \textit{SVM}.
+\medskip
+
+Por otra parte el \textit{feature} \textit{SC} es de desempeño intermedio junto con \textit{Características Espectrales y Armónicas} en el experimento. Para el caso de \textit{SC} existe una mejora notoria al variar los parámetros. En otras palabras la comparación entre picos y valles tiene un poder descriptivo mayor de el problema, al dividir el espectro en 6 bandas con respecto a 3 bandas.  
+\medskip
+
+Del otro lado vemos que la variación de la ventana de análisis en \textit{Características Espectrales y Armónicas} no generan un mejor rendimiento. Vale decir que su desempeño similar al de \textit{SC} pesar de tener dimensiones correlacionadas como es el caso de \textit{ZCR} y \textit{Centroid}. Por lo que alguna estrategia de decorrelación previo al clasificador podría mejorar el desempeño de este conjunto de medidas.
+\medskip 
+
+También se observa que \textit{MFCC} es el \textit{feature} de mejor desempeño para la resolución del problema. Como contra partida, frente a \textit{SC} y \textit{Características Espectrales y Armónicas} la dimensión del espacio de características es mayor, resultando en un costo computacional superior. 
+\medskip
+
+Otro análisis relevante del experimento esta dado por las matrices de confusión. Para detallar los resultados se deja de lado \textit{LPC} de pobre rendimiento, y se computan las matrices de confusión con la predicción realizada con \textit{KNN} a la grabación de Emma Resmini como conjuto de test. En la Figura \ref{fig:exp1_confusion} se observa las matrices de confusión respectivas, todos los valores son en porcentaje, relativos a la cantidad de frames en la clase.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=1\textwidth]{exp1_confusion} 
-\caption{Matrices de confusión para las características MFCC, SC, y Características Espectrales y Armónicas de izquierda a derecha respectivamente. Para todos los casos el algoritmo de clasificación es KNN.}
+\caption{Matrices de confusión para las características \textit{MFCC}, \textit{SC}, y \textit{Características Espectrales y Armónicas} de izquierda a derecha respectivamente. Para todos los casos el algoritmo de clasificación es KNN.}
 \label{fig:exp1_confusion}
 \end{center}
 \end{figure}
 
+Los resultados demuestran, independientemente de los \textit{features}, que las clases \textit{Blow Hole Covert} y \textit{Normal Embouchure} se separan frente al resto. No es el caso de \textit{Breathy} que principalmente se confunde con \textit{Blow Hole Covert}. Es razonable ya que se puede pensar como el caso intermedio desde el punto de vista acústico, entre las tres clases. Queda planteado entonces el punto débil en la extracción de embocadura de las características propuestas. De ahora en más se trabaja con el \textit{feature} \textit{MFCC} de mejor desempeño. 
+
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=1\textwidth]{exp1_artista} 
+%\caption{Boxplot para el accuracy de los algoritmos de clasificación. Se muestra los resultados de forma independiente por artista (fold) y según los parámetros de las características.}
+%\label{fig:exp1_artista}
+%\end{center}
+%\end{figure}
+
 \subsection{Segundo experimento: Blow Hole Covert Vs. Breathy}
+
+En lo que sigue se evalúa nuevamente el desempeño de \textit{MFCC} en la separación de las clases pero con una versión reducida del problema, teniendo en cuenta solamente las dos clases problemáticas: \textit{Blow Hole Covered} y \textit{Breathy Embouchure}. 
+\medskip
+
+Por simpleza se trabaja solamente con \textit{MFCC} computado con 40 bandas Mel y 20 coeficientes. En la Figura \ref{fig:exp2_bhcbr} se observa el \textit{accuracy} para los distintos algoritmos de clasificación.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=1\textwidth]{exp1_confusion2} 
+\includegraphics[width=1\textwidth]{exp2_bhcbr} 
 \caption{Matrices de confusión para las clases \textit{BHC} Vs. \textit{Breathy} generadas con características MFCC y el clasificador KNN.}
-\label{fig:exp1_confusion2}
+\label{fig:exp2_bhcbr}
 \end{center}
 \end{figure}
 
-Y ME QUEDO CON MFCC PORQUE ES UN FIERRO
-PRESENTA DOS PROBLEMÁTICAS: 
-NINGÚN FEATURE LOGRA SEPARAR BREATHY VS. BHC: se prueba solo con esas dos clases y mfcc20 (por simplicidad para el computo y clasificador) 
--LA CLASE TONAL QUE SERÍA LA MÁS SEPARABLE PRESENTA CONFUSIÓN QUE PODRÍA EVITARSE CON EL VOICING (?) : MFCC es un fierro pero apriori no tiene porque utilizar la información de periodicidad propiamente dicha. Parámetro relevante en la separación de estos tres tipos de embocadura. Se agrega voicing tipo yin \cite{de2002yin}
- 
-\subsection{Tercer Experimento: Refinamiento de MFCC}
-Compromiso resolución en frecuencia resolución temporal
+El desempeño es similar al problema completo de tres clases y no existen grandes diferencias en el rendimiento según el algoritmo de clasificación. En la Figura \ref{fig:exp2_confusion} se observa la matriz de confusión para la predicción realizada con \text{KNN} a la grabación de Emma Resmini como conjunto de test, además se normaliza los resultados del experimento de la Sección \ref{experimento1} para realizar la comparación.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp2_confusion} 
+\caption{Matrices de confusión para las clases \textit{BHC} Vs. \textit{Breathy} generadas con características MFCC y el clasificador KNN.}
+\label{fig:exp2_confusion}
+\end{center}
+\end{figure}
+
+Si bien sigue siendo considerable la confusión con un $37\%$ de elementos de \textit{Breathy} clasificados como \textit{Blow Hole Covert}, hay una mejora en comparación al experimento anterior, acertando ahora en la mayoría de los casos. 
+\medskip 
+
+Una estrategía de dos estapas de clasificación en cascada mejoraría los resultados con respecto al Experimento \ref{experimento1} a cambio de mayor costo computacional.
+
+\subsection{Refinamiento de la extracción de características basada en MFCC}
+
+En lo que sigue se buscan los parámetros de \textit{MFCC} que logran el resultado óptimo para el problema dado. Recordando la matriz de confusión de la Figura \ref{fig:exp1_confusion}, para el mejor caso (\textit{MFCC} + \textit{KNN}) existe un $13\%$ de frames ejecutados con \textit{Normal Embouchure} que fueron mal clasificados.
+\medskip
+
+Mientras \textit{MFCC} es una buena medida del aspecto tímbrico del material sonoro por extraer la envolvente espectral, a priori no contiene información de la periodicidad de la señal de analisis. Por lo que se propone agregar el computo de \textit{Voicing} como una dimensión más del vector de carcterísticas y evaluar si existe disminuición en la confusión de la clase \textit{Normal Embrochure}.
+\medskip
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp3} 
+\caption{\textit{Accuracy} y matriz de confusión para la evaluación comparativa del agregado de \textit{Voicing} a las características \textit{MFCC}}
+\label{fig:exp3}
+\end{center}
+\end{figure}
+
+Se observa en la Figura \ref{fig:exp3} que tanto el \textit{accuracy}, como la confusión de la clase \textit{Normal Embouchure}, no denotan cambios relevantes de forma cualitativamente.
+
+En lo que sigue se evalúa el desempeño de \textit{MFCC} variando el largo de la vetana de análisis en los valores $11ms$, $23ms$ y $46ms$. En todos los casos el salto entre ventanas es del $50\%$.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp3_refinamiento} 
+\caption{Accuracy de \textit{MFCC} al variar el largo de ventana de análisis.}
+\label{fig:exp3_refinmamiento}
+\end{center}
+\end{figure}
+
+Como se observa en la Figura \ref{fig:exp3_refinmamiento} no existen cambios relevantes en el desempeño al variar el largo de la ventana. Se puede decir que para estos valores la variación tanto en la resolución temporal como en la espectral no es suficiente como para denotar diferencias en el desempeño.  
+\medskip
+
+Por ultimo decir que la mejor combinación de parámetros para el cómputo de \textit{MFCC} esta dada por una ventana de $23ms$, 40 bandas Mel y sin liftrado en el dominio de las quefrencys, resultando en un vector 40 dimensiones, siendo alta con respecto a las que se han manejado en el presente trabajo (ver Figura \ref{fig:exp1_comparacion}). Vale restaltar que usualmente se liftra la señal ya que la información tímbrica no se encuentra en las altas quefrencys pero los resultados para estos datos sugieren lo contrario.
+\medskip
+
+\newpage
+
+\section{Conclusiones}
+\label{conclusiones}
+Las características evaluadas en el presente trabajo no fueron adecuadas para la separación de las clases \textit{Blow Hole Covert} y \textit{Breathy}. Con un estudio mas minucioso sobre la naturaleza acústica de estos dos embocaduras se podría diseñar algún \textit{feature} que desambigüe la decisión. 
+\medskip
+
+Si bien se concluye que se debe mejorar la separación entre las embocaduras \textit{Blow Hole Covert} y \textit{Breathy}, existen pasajes de transisión, inicios y finales de frases músicales, en los que se vuelve ambigua su naturaleza acústica, y se deben tener en cuenta al momento del etiquetado de las embocaduras. 
+
+\medskip
+
+Desde otro punto de vista la ambiguedad entre las clases sugiere que el enfoque basado en el aspecto tímbrico estimado como la envolvente espectral, no es suficiente. Si bien la embocadura varia el material sonoro y, en un sentido amplio, la composición tímbrica, hay que tener en cuenta que el instrumento físico no cambia. Por lo que el resonador es estacionario y mínima la variación de la estimación de la envolvente espectral a lo largo el tiempo. Esto explicaría por un lado porque los \textit{features} \textit{LPC} tuvieron un pobre desempeño y por otro porque el accuracy óptimo se logra con \textit{MFCC's} sin liftrar. Queda planteada la hipotesis de que la información relevante está en la exitación generada por el intérprete y no por las características del resonador dadas por la envolvente espectral.
+
+\medskip
+
+Por último vale mencionar que la estrategia de \textit{bag of frames} es exigente, ya que se descarta la información temporal de la señal de audio, dejando de lado toda la información a priori. Es mucha la información relevante dada por ser grabaciones de audio de una interpretación musical, de un estilo definido y por si fuera poco con partitura disponible. 
 
 
-
-
-Se identifica nuevamente el problema en la separación
-
-Comparar confusión entre 2x2 y 3x3 en la separación de BHC y BREATHY
-
-Discusión de agregar voicing, ver como mejora la matriz de confusión 
-
-Hablar que la confusión puede ser por articulaciones similares con distinta embocadura, mirar mariana stratta
-
-\subsubsection{}
-
-
-\section{Trabajo a futuro}
+\subsection{Trabajo a futuro}
 
 \begin{itemize} 
-  \item Segmentación de audio, umbralizando los silencios y las respiraciones 
-  \item Salir del bag of frames, para utilizar la redundancia temporal
-  \item Dejar Planteado el sistema completo! diagrama de bloques!
+
+  \item Enfocar la resolución del problema desde la estimación de la exitación generada por el intérprete, y evaluar el desempeño con esta estrategia.
+  
+  \item Segmentación automática del audio en fragmentos de actividad de la flauta y silencios, como primer etapa del sistema de extracción de embocadura, previo a la etapa de clasificación.
+   
+  \item Salir del bag of frames, para utilizar la redundancia temporal y la información a priori del problema.
+
 \end{itemize}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY

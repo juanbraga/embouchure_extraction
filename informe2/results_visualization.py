@@ -81,25 +81,9 @@ if __name__=='__main__':
     plt.subplot(1,2,2), plot_confusion_matrix(cnf_matrix_mfcc_bhcbr, classes=['BHC','Breathy'],
                       title='Matriz de confusion para MFCC de BHC Vs. Breathy'), plt.grid('off')  
                       
+
                       
-    #%% CRAZY PLOTS
-    
-    ##%% pairwaise comparison classical features
-    #features_spectral="../features/" + 'juan' + "_spectral_" + str(256) + str(128) + "_train.npy"
-    #data_spectral=np.load(features_spectral)
-    #d_spectral = {'rolloff': data_spectral[0,:], 'centroid': data_spectral[1,:], 'bandwith': data_spectral[2,:], 'zcr': data_spectral[3,:], 'voicing': data_spectral[4,:], 'gt': data_spectral[5,:]}
-    #df_spectral = pd.DataFrame(data=d_spectral)
-    #sns.pairplot(df_spectral, hue='gt', vars=['voicing', 'zcr','centroid'])
-    #
-    ##%% 2x2 probabilites out of RandomForest
-    #melcoeff=20
-    #melbands=40
-    #probabilties="../prediction/" + 'pablo' + "_mfcc_" + str(melcoeff) + str(melbands) + "_proba.npy"
-    #proba=np.load(probabilties)
-    #proba=proba.T
-    #d_proba = {'bhc': proba[0,:], 'breathy': proba[1,:], 'normal': proba[2,:], 'time': proba[3,:], 'gt': proba[4,:]}
-    #df_proba = pd.DataFrame(data=d_proba)
-    #sns.pairplot(df_proba, hue='gt', vars=['bhc', 'breathy','normal'])
+                     
     
     #%% LPC
     
@@ -259,6 +243,7 @@ if __name__=='__main__':
     plt.subplot(1,4,4), plt.ylim([40,90]), sns.boxplot(x="clf", y="accuracy", hue="bands", data=df_spectralcontrast, palette="hls")
     sns.despine(offset=10, trim=True), plt.title('SC')
     
+    #%% Todas Juntas por artista    
     plt.figure()
     plt.subplot(1,4,1), plt.ylim([40,90]), sns.boxplot(x="artist", y="accuracy", hue="poles", data=df_lpc, palette="hls")
     sns.despine(offset=10, trim=True), plt.title('LPC'), 
@@ -268,6 +253,7 @@ if __name__=='__main__':
     sns.despine(offset=10, trim=True), plt.title('Caracteristcas Espectrales y Armonicas')
     plt.subplot(1,4,4), plt.ylim([40,90]), sns.boxplot(x="artist", y="accuracy", hue="bands", data=df_spectralcontrast, palette="hls")
     sns.despine(offset=10, trim=True), plt.title('SC')
+    
     
     #%% BHC Vs. Breathy
     
@@ -284,16 +270,23 @@ if __name__=='__main__':
     df_bhcbr = pd.DataFrame(data=d_bhcbr)
          
     # Draw a pointplot to show pulse as a function of three categorical factors
-    g = sns.factorplot(x="clf", y="accuracy", hue="params", data=df_bhcbr,
-                       capsize=.2, palette="hls", size=6, aspect=.75)
-    g.despine(left=True)
+    plt.figure(),
+#    plt.subplot(1,2,1), 
+    plt.ylim([70, 90])
+    sns.boxplot(x="clf", y="accuracy", hue="params", data=df_bhcbr,
+                       palette="hls")
+    plt.title('BHC Vs. Breathy')
+
     
-    # Draw a pointplot to show pulse as a function of three categorical factors
-    g = sns.factorplot(x="artist", y="accuracy", hue="params", data=df_bhcbr,
-                       capsize=.2, palette="hls", size=6, aspect=.75)
-    g.despine(left=True)
+#    plt.subplot(1,2,2), plt.ylim([70, 90])
+#    sns.boxplot(x="artist", y="accuracy", hue="params", data=df_bhcbr,
+#                       palette="hls")
+#    plt.title('BHC Vs. Breathy')
+
     
     #%% MFCC + Voicing
+
+    plt.close('all')    
     
     mfcc_2040 = np.array([80,79,79,77,75,72,78,79,79,78,76,74,82,81,82])
     mfccvoicing = np.array([80,74,74,77,76,76,78,81,80,77,74,71,83,82,82])
@@ -313,17 +306,20 @@ if __name__=='__main__':
     df_mfccvoicing = pd.DataFrame(data=d_mfccvoicing)
          
     # Draw a pointplot to show pulse as a function of three categorical factors
-    g = sns.factorplot(x="clf", y="accuracy", hue="params", data=df_mfccvoicing,
-                       capsize=.2, palette="hls", size=6, aspect=.75)
-    g.despine(left=True)
+    plt.figure(),
+    plt.subplot(1,2,1), 
+    plt.ylim([70, 90])
+    sns.boxplot(x="clf", y="accuracy", hue="params", data=df_mfccvoicing,
+                       palette="hls")    
     plt.title('MFCC Vs. MFCC + Voicing')
     
+    cnf_matrix_mfccvoicing = np.array([[ 0.88071161, 0.10749064, 0.01179775],
+                                       [ 0.41493228, 0.4304592, 0.15460852], 
+                                        [ 0.05376052, 0.0640782, 0.88216128]])                                
     
-    # Draw a pointplot to show pulse as a function of three categorical factors
-    g = sns.factorplot(x="artist", y="accuracy", hue="params", data=df_mfccvoicing,
-                       capsize=.2, palette="hls", size=6, aspect=.75)
-    g.despine(left=True)
-    plt.title('MFCC Vs. MFCC + Voicing')
+    plt.subplot(1,2,2),
+    plot_confusion_matrix(cnf_matrix_mfccvoicing, classes=['BHC','Breathy','Normal'],
+                      title='Matriz de confusion para MFCC+Voicing'), plt.grid('off')
     
     
     #%% MFCC REFINATION
@@ -364,3 +360,21 @@ if __name__=='__main__':
     g = sns.factorplot(x="artist", y="accuracy", hue="params", data=df_mfcc_refi,
                        capsize=.2, palette="hls", size=6, aspect=.75)
     g.despine(left=True)
+    
+    plt.figure(),
+#    plt.subplot(1,2,1), 
+    plt.ylim([70, 90])
+    sns.boxplot(x="clf", y="accuracy", hue="params", data=df_mfcc_refi,
+                       palette="hls")
+    plt.title('Refinamiento MFCC')
+
+    
+#    plt.subplot(1,2,2), plt.ylim([70, 90])
+#    sns.boxplot(x="artist", y="accuracy", hue="params", data=df_mfcc_refi,
+#                       palette="hls")
+#    plt.title('Refinamiento MFCC')
+    
+    
+    #%%
+    
+    
