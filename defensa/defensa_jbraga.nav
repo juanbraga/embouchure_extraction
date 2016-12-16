@@ -71,8 +71,13 @@
 \headcommand {\beamer@subsectionentry {0}{4}{1}{26}{Trabajo a Futuro}}\headcommand {\beamer@subsectionpages {25}{25}}
 \headcommand {\slideentry {4}{1}{1}{26/26}{Trabajo a Futuro}{0}}
 \headcommand {\beamer@framepages {26}{26}}
-\headcommand {\beamer@partpages {1}{26}}
-\headcommand {\beamer@subsectionpages {26}{26}}
+\headcommand {\sectionentry {5}{Preguntas}{27}{Preguntas}{0}}
 \headcommand {\beamer@sectionpages {25}{26}}
-\headcommand {\beamer@documentpages {26}}
-\headcommand {\def \inserttotalframenumber {26}}
+\headcommand {\beamer@subsectionpages {26}{26}}
+\headcommand {\slideentry {5}{0}{1}{27/27}{}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\beamer@partpages {1}{27}}
+\headcommand {\beamer@subsectionpages {27}{27}}
+\headcommand {\beamer@sectionpages {27}{27}}
+\headcommand {\beamer@documentpages {27}}
+\headcommand {\def \inserttotalframenumber {27}}

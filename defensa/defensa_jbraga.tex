@@ -449,12 +449,36 @@ Variación del largo de ventana de análisis, con salto del $50\%$ en todos los 
 \section{Conclusiones}
 
 \begin{frame}{Conclusiones}
-
+\begin{itemize}
+\item Se realiza satisfactoriamente la separación de las clases: \textit{Normal Embouchure} y \textit{Blow Hole Covert} frente al resto. Sin embargo existe gran confusión entre las clases \textit{Blow Hole Covert} y \textit{Breathy Embouchure}. Algún feature diseñado con un estudio más profundo de la naturaleza acústica de estas clases podría desambigüar el problema.
+\item La ambigüedad sugiere que el enfoque basado en el aspecto tímbrico a partir de la envolvente espectral no es suficiente. Queda planteada la posibilidad de que la información relevante para la separación de estas clases se encuentre la exitación.
+\item Se debe tener en cuenta por otro lado, que existen pasajes de transición, inicios y finales de frases musicales en que las clases se vuelven ambigüas y se debe tener en cuenta al momento de etiquetado.
+\item En adición a lo anterior, la estrategia de \textit{Bag of Frames} es exigente y descarta la redundancia temporal como la información a priori del problema.
+\end{itemize}
 \end{frame}
 
 \subsection{Trabajo a Futuro}
 
 \begin{frame}{Trabajo a futuro}
+\begin{itemize} 
+
+  \item Enfocar la resolución del problema desde la estimación de la exitación generada por el intérprete, y evaluar el desempeño con esta estrategia.
+  
+  \item Segmentación automática del audio en fragmentos de actividad de la flauta y silencios, como primer etapa del sistema de extracción de embocadura, previo a la etapa de clasificación.
+   
+  \item Salir del bag of frames, para utilizar la redundancia temporal y la información a priori del problema.
+
+\end{itemize}
+\end{frame}
+
+\section*{Preguntas}
+\begin{frame}{Preguntas}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{preguntas} 
+\end{center}
+\end{figure}
+
 \end{frame}
 
 %% Placing a * after \section means it will not show in the
