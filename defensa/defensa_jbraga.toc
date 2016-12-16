@@ -10,5 +10,5 @@
 \beamer@subsectionintoc {3}{1}{Primer experimento}{15}{0}{3}
 \beamer@subsectionintoc {3}{2}{Segundo experimento}{19}{0}{3}
 \beamer@subsectionintoc {3}{3}{Refinamiento de la extracci\IeC {\'o}n de caracter\IeC {\'\i }sticas basada en MFCC}{21}{0}{3}
-\beamer@sectionintoc {4}{Conclusiones}{22}{0}{4}
-\beamer@subsectionintoc {4}{1}{Trabajo a Futuro}{23}{0}{4}
+\beamer@sectionintoc {4}{Conclusiones}{25}{0}{4}
+\beamer@subsectionintoc {4}{1}{Trabajo a Futuro}{26}{0}{4}

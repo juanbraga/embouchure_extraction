@@ -65,7 +65,7 @@
   %\inst{1}%
   Instituto de Ingeniería Eléctrica (IIE)\\
   Facultad de Ingeniería (FING)\\
-  Universidad de la República (UDELAR)}
+  Universidad de la República (UdelaR)}
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
 
@@ -303,7 +303,8 @@ Es una medida de contraste por octavas. Extrae la diferencia entre los picos y l
   \item {   
     Se utilizan con parámetros por defecto, ya que no es objetivo del presente trabajo optimizar los clasificadores.
   }
-
+	\item{Se centran en cero y se escalan a varianza unidad todos los datos, previo al entrenamiento y clasificación.
+	}
   \end{itemize}
 \end{frame}
 
@@ -396,44 +397,64 @@ Evaluar el desempeño de \textit{MFCC} en un problema reducido: \textit{Blow Hol
 
 \subsection{Refinamiento de la extracción de características basada en MFCC}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
+\begin{frame}{Refinamiento de la extracción de características basada en \textit{MFCC}}
+\begin{block}{Primera estrategia}
+\textit{MFCC} extrae aspectos tímbricos de la señal, por lo que a priori no tiene en cuenta la periodicidad de la señal. Se propone agregar \textit{Voicing} como una dimensión más del vector de características, con el objetivo de mejorar la confusión de la clase \textit{Normal Embouchure}.
+\begin{itemize}
+\item Confusión de \textit{Normal Embouchure} contra el resto (para \textit{MFCC} 40 bandas y 20 coeficientes): $13\%$.
+\end{itemize}
 \end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
 \end{frame}
+
+\begin{frame}{Refinamiento de la extracción de características basada en \textit{MFCC}}
+
+\begin{block}{Resultados}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{exp3} 
+\end{center}
+\end{figure}
+\end{block}
+\begin{itemize}
+\item No hay mejoras significativas ni en el \textit{accuracy} ni la confusión ($11\%$).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Refinamiento de la extracción de características basada en \textit{MFCC}}
+\begin{block}{Segunda estrategia}
+Variación del largo de ventana de análisis, con salto del $50\%$ en todos los casos:
+\begin{itemize}
+\item $11ms$
+\item $23ms$
+\item $46ms$
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Refinamiento de la extracción de características basada en \textit{MFCC}}
+\begin{block}{Resultados}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{exp3_refinamiento} 
+\end{center}
+\end{figure}
+\end{block}
+\begin{itemize}
+\item No existen cambios relevantes al variar la ventana de análisis.
+\item \alert{El mejor desempeño esta dado por 40 bandas \textit{Mel} y 40 coeficientes.} Resultado curioso.
+\end{itemize}
+\end{frame}
+
 
 \section{Conclusiones}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
-\end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
+\begin{frame}{Conclusiones}
+
 \end{frame}
 
 \subsection{Trabajo a Futuro}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
-\end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
+\begin{frame}{Trabajo a futuro}
 \end{frame}
 
 %% Placing a * after \section means it will not show in the
@@ -464,35 +485,35 @@ Here is an example of an example block.
 %
 %
 %
-% All of the following is optional and typically not needed. 
-\appendix
-\section<presentation>*{\appendixname}
-\subsection<presentation>*{For Further Reading}
-
-\begin{frame}[allowframebreaks]
-  \frametitle<presentation>{Literatura sobre Flauta}
-    
-  \begin{thebibliography}{}
-    
-  \beamertemplatebookbibitems
-  % Start with overview books.
-
-  \bibitem{piston1955orchestration}
-    A.~Author.
-    \newblock {\em Handbook of Everything}.
-    \newblock Some Press, 1990.
- 
-    
-  \beamertemplatearticlebibitems
-  % Followed by interesting articles. Keep the list short. 
-
-  \bibitem{Someone2000}
-    S.~Someone.
-    \newblock On this and that.
-    \newblock {\em Journal of This and That}, 2(1):50--100,
-    2000.
-  \end{thebibliography}
-\end{frame}
+%% All of the following is optional and typically not needed. 
+%\appendix
+%\section<presentation>*{\appendixname}
+%\subsection<presentation>*{For Further Reading}
+%
+%\begin{frame}[allowframebreaks]
+%  \frametitle<presentation>{Literatura sobre Flauta}
+%    
+%  \begin{thebibliography}{}
+%    
+%  \beamertemplatebookbibitems
+%  % Start with overview books.
+%
+%  \bibitem{piston1955orchestration}
+%    A.~Author.
+%    \newblock {\em Handbook of Everything}.
+%    \newblock Some Press, 1990.
+% 
+%    
+%  \beamertemplatearticlebibitems
+%  % Followed by interesting articles. Keep the list short. 
+%
+%  \bibitem{Someone2000}
+%    S.~Someone.
+%    \newblock On this and that.
+%    \newblock {\em Journal of This and That}, 2(1):50--100,
+%    2000.
+%  \end{thebibliography}
+%\end{frame}
 
 \end{document}
 
