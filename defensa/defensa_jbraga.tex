@@ -345,24 +345,53 @@ Evaluar el poder de separación de embocaduras de las características propuesta
 \item \textit{LPC}: El peor desempeño. Además la variación del número de polos no muestra variaciones significativas.
 \item \textit{SC}: Desempeño medio. Existe una mejora notoria al aumentar las bandas.
 \item \textit{CEA}: Desempeño medio. La variación de la ventana de análisis no genera cambios apreciables. Alguna estrategia de decorrelación podría mejorar los resultados.
-\item \textit{MFCC}: 
+\item \textit{MFCC}: El mejor desempeño. Contrapartida el número de dimensiones del vector de características.
+\item \textit{k-NN}: Salvo para \textit{LPC} mejor desempeño entre clasificadores.
 \end{itemize}
 \end{block}
-
 \end{frame}
+
+\begin{frame}{Primer experimento}
+\begin{block}{Matrices de confusión}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp1_confusion} 
+\end{center}
+\end{figure}
+\begin{itemize}
+\item Independientemente de los \textit{features} las clases \textit{Blow Hole Covert} y \textit{Normal Embouchure} se separan frente al resto.
+\item \textit{Breathy} se confunde principalmente con \textit{Normal Embouchure}
+\end{itemize}
+\end{block}
+\end{frame}
+
 
 \subsection{Segundo experimento}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
+\begin{frame}{Segundo Experimento}
+\begin{block}{Objetivo}
+Evaluar el desempeño de \textit{MFCC} en un problema reducido: \textit{Blow Hole Covert} Vs. \textit{Breathy Embouchure}.
+\begin{itemize}
+\item Por simpleza se trabaja solamente con 40 bandas \textit{Mel} y 20 coeficientes.
+\end{itemize}
 \end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
+\begin{block}{Matrices de confusión}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{exp2_confusion} 
+\end{center}
+\end{figure}
+\end{block}
+\end{frame}
+
+\begin{frame}{Segundo Experimento}
+\begin{block}{Evaluación de resultados}
+\begin{itemize}
+\item La confusión de \textit{Breathy} sigue siendo considerable con un $37\%$.
+\item Existe una mejoría con respecto al problema de tres clases.
+\item Una estrategia de clasificadores en cascada mejoraría el desempeño general, a cambio de costo computacional.
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{Refinamiento de la extracción de características basada en MFCC}
