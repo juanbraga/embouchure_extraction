@@ -7,8 +7,8 @@
 \beamer@subsectionintoc {2}{1}{Conjunto de Datos}{12}{0}{2}
 \beamer@subsectionintoc {2}{2}{Extracci\IeC {\'o}n de Caracter\IeC {\'\i }sticas}{13}{0}{2}
 \beamer@sectionintoc {3}{Experimentos}{14}{0}{3}
-\beamer@subsectionintoc {3}{1}{Primer experimento}{14}{0}{3}
-\beamer@subsectionintoc {3}{2}{Segundo experimento}{15}{0}{3}
-\beamer@subsectionintoc {3}{3}{Refinamiento de la extracci\IeC {\'o}n de caracter\IeC {\'\i }sticas basada en MFCC}{16}{0}{3}
-\beamer@sectionintoc {4}{Conclusiones}{17}{0}{4}
-\beamer@subsectionintoc {4}{1}{Trabajo a Futuro}{18}{0}{4}
+\beamer@subsectionintoc {3}{1}{Primer experimento}{15}{0}{3}
+\beamer@subsectionintoc {3}{2}{Segundo experimento}{18}{0}{3}
+\beamer@subsectionintoc {3}{3}{Refinamiento de la extracci\IeC {\'o}n de caracter\IeC {\'\i }sticas basada en MFCC}{19}{0}{3}
+\beamer@sectionintoc {4}{Conclusiones}{20}{0}{4}
+\beamer@subsectionintoc {4}{1}{Trabajo a Futuro}{21}{0}{4}

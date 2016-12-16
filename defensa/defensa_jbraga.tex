@@ -274,32 +274,81 @@ Cada obra define un conjunto de test.
 
 \subsection{Extracción de Características}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
+\begin{frame}{Extracción de Características}
+\begin{block}{Mel-Frequency Cepstral Coefficients (MFCC)}
+Extraen contenido tímbrico de la señal.
 \end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
+\begin{block}{Linear Prediction Coefficients (LPC)}
+Envolvente espectral.
+\end{block}
+\begin{block}{Características Espectrales y Armónicas (CEA)}
+\textit{Roll-off}, \textit{Centroid}, \textit{Bandwith}, \textit{Zero-Crossing Rate} y \textit{Voicing} 
+\end{block}
+\begin{block}{Octave-based Spectral Contrast (SC)}
+Es una medida de contraste por octavas. Extrae la diferencia entre los picos y los valles.
+\end{block}
 \end{frame}
 
 \section{Experimentos}
 
+\begin{frame}{Experimentos}{Consideraciones generales}
+  \begin{itemize}
+  \item {
+    Se utilizan tres clasificadores distintos para la evaluación de desempeño:
+    \begin{itemize}
+    	\item \textit{K-Nearest Neighbors} (10 vecinos)
+     	\item \textit{Random Forest} (10 árboles).
+     	\item \textit{Support Vector Machines} (kernel lineal).
+    \end{itemize}}
+  \item {   
+    Se utilizan con parámetros por defecto, ya que no es objetivo del presente trabajo optimizar los clasificadores.
+  }
+
+  \end{itemize}
+\end{frame}
+
 \subsection{Primer experimento}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
+\begin{frame}{Primer experimento}
+\begin{block}{Objetivo}
+Evaluar el poder de separación de embocaduras de las características propuestas y determinar la de mejor desempeño.
 \end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
+\begin{block}{Parámetros de la extracción de características:}
+\begin{itemize}
+	\item Característcas Espectrales y Armónicas: (a) $11ms$ y $50\%$ de salto (256-128 muestras), (b) $23ms$ y $50\%$  (1024-512 muestras) y por último (c) $46ms$ y $50\%$  (2048-1024 muestras).
+%	\begin{itemize}
+%		\item Voicing: Número de retardos: 250 muestras.
+%		\item Roll-off: $\lambda=85\%$
+%		\item Centroid, Bandwith y Zero-Crossing Rate: quedan definidos por el largo de la ventana de análisis y el salto.
+%	\end{itemize}
+	\item MFCC: Ventana de análisis de $23ms$ y salto del $50\%$, 40 bandas Mel y liftrado: (a) 20 coeficientes, (b) 30 coeficientes y (c) 40 coeficientes.
+	\item LPC: Ventana de análisis de $23ms$ y salto del $50\%$ y cantidad de polos: (a) 10, (b) 20 y (c) 40.
+	\item SC: Ventana de análisis de $23ms$ y salto del $50\%$ y numero de bandas: (a) 3 y (b) 6.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Primer experimento}
+\begin{block}{Resultados}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{exp1_comparacion} 
+\end{center}
+\end{figure}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Primer experimento}
+\begin{block}{Evaluación de resultados}
+\begin{itemize}
+\item \textit{LPC}: El peor desempeño. Además la variación del número de polos no muestra variaciones significativas.
+\item \textit{SC}: Desempeño medio. Existe una mejora notoria al aumentar las bandas.
+\item \textit{CEA}: Desempeño medio. La variación de la ventana de análisis no genera cambios apreciables. Alguna estrategia de decorrelación podría mejorar los resultados.
+\item \textit{MFCC}: 
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 \subsection{Segundo experimento}
