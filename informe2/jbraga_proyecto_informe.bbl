@@ -47,6 +47,12 @@ Makhoul, J. (1975).
 \newblock Linear prediction: A tutorial review.
 \newblock {\em Proceedings of the IEEE}, 63(4):561--580.
 
+\bibitem[McFee et~al., 2015]{mcfee2015librosa}
+McFee, B., Raffel, C., Liang, D., Ellis, D.~P., McVicar, M., Battenberg, E.,
+  and Nieto, O. (2015).
+\newblock librosa: Audio and music signal analysis in python.
+\newblock In {\em Proceedings of the 14th Python in Science Conference}.
+
 \bibitem[Pedregosa et~al., 2011]{pedregosa2011scikit}
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
   O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., et~al. (2011).

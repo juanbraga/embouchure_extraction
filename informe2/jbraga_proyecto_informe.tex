@@ -95,7 +95,7 @@ Además de la ejecución de alturas como material sonoro, los compositores acad�
 La extracción de contenido musical en este tipo de obras no se abarca solamente con estimación de alturas y duraciones, a diferencia del lenguaje tradicional de la flauta. El repertorio contemporáneo define un área del \textit{MIR} (por su sigla en inglés \textit{Music Information Retrieval}) desafiante y de espectro más amplio. Además es un área de estudio donde no existe mucho camino andando, habiendo tierra fértil para explorar y lograr contribuciones. 
 \medskip
 
-El cometido del presente trabajo es el acercamiento a este tipo de problemas, con objetivo la extracción automática de embocadura a partir de grabaciones de la obra contemporánea Aliento/Arrugas. En lo que sigue, Sección \ref{embocadura}, se define con más detalle el término embocadura, y se hace un análisis de sus principales implicancias en el sonido de la flauta. Además en la Sección \ref{aliento} se describe en mayor profunidad la pieza musical Aliento/Arrugas. Luego en la Seccion \ref{problema} se define el problema y la estrategia de resolucion, se detalla la base de datos y se da un breve marco teórico de las características a utilizar. La Sección \ref{experimento} esta dedicada a comentar los resultados y algunas consideraciones, para finalmente concluir el trabajo en el Sección \ref{conclusiones}.
+El cometido del presente trabajo es el acercamiento a este tipo de problemas, con objetivo la extracción automática de embocadura a partir de grabaciones de la obra contemporánea Aliento/Arrugas. En lo que sigue, Sección \ref{embocadura}, se define con más detalle el término embocadura, y se hace un análisis de sus principales implicancias en el sonido de la flauta. Además en la Sección \ref{aliento} se describe en mayor profunidad la pieza musical Aliento/Arrugas. Luego en la Seccion \ref{problema} se define el problema y la estrategia de resolucion, se detalla la base de datos y se da un breve marco teórico de las características a utilizar. La Sección \ref{experimento} esta dedicada a comentar los resultados y algunas consideraciones, para finalmente concluir el trabajo en el Sección \ref{conclusiones}. Por otro lado en el Anexo se puede ver una representación gráfica de las predicciónes para comparación visual con el ground truth.
 
 \subsection{Embocadura}
 \label{embocadura}
@@ -128,7 +128,7 @@ El compositor utiliza como recurso expresivo tres tipos de embocadura para ejecu
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.6\textwidth]{embocaduras} 
+\includegraphics[width=0.5\textwidth]{embocaduras} 
 \caption{Notación de las embocaduras se observa en la parte superior de los sistemas. (a) \textit{Blow Hole Covert}. (b) \textit{Breathy Embouchure}. (c) \textit{Normal Embouchure}. Fragmentos extraídos de la partitura de Aliento/Arrugas.}
 \label{fig:embocaduras}
 \end{center}
@@ -313,7 +313,7 @@ A diferencia de \textit{MFCC} y \textit{LPC} que realizan un promediado de la in
 Se evalúa la capacidad de los descriptores presentados en la Sección \ref{descriptores} en la separación de embocaduras. Para esto se utilizan tres clasificadores distintos para minimizar el bías que pueda existir entre los datos y un algoritmo en particular. Se trabaja con los algoritmos: \textit{Random Forest (trees=10)}, \textit{Support Vector Machine (kernel lineal)} y \textit{K-Nearest Neighbors (k=10)}. En todos los casos se utilizan los parámetros por defecto ya que no es objetivo de este trabajo encontrar los valores óptimos de clasificación. La implementación se realiza mediante el módulo de \textit{Python} llamado \textit{Scikit Learn} \citep{pedregosa2011scikit}. En todos los casos los datos son preprocesados de manera de centrar en cero y escalar la varianza a uno, previo al clasificador.
 \medskip
 
-Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical, como se detalla en la Sección \ref{datos}. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento.
+Todos los experimentos se realizan con \textit{5-fold cross validation} donde los folds son las diferentes interpretaciones de la pieza musical, como se detalla en la Sección \ref{datos}. De esta forma se asegura que frames provenientes de la misma grabación no sean usados para train y test en un mismo experimento. Además los \textit{features}: \textit{MFCC}, \textit{SC}, \textit{Roll-off}, \textit{Centroid}, \textit{ZCR} y \textit{Bandwith} se calculan utilizando el módulo de \textit{Pyhon} llamado \textit{Librosa} \citep{mcfee2015librosa}.
 \medskip
 
 \subsection{Primer experimento: Mejor descriptor para extracción de embocadura}
@@ -477,7 +477,24 @@ Por último vale mencionar que la estrategia de \textit{bag of frames} es exigen
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
+\newpage
 
+\section*{Anexo: Representación gráfica de la extracción de embocadura}
+
+A continuación se muestra gráficamente la predicción del clasificador \textit{K-Nearest Neighbors} con las carcterísticas \textit{Mel-Frequency Cepstral Coefficients} con ventana de análisis de $23ms$ y 20 coefficientes computados con 40 bandas Mel. Para la comparación se puede ver también el \textit{ground truth} representado en la mitad izquierda de los rectángulos.
+\medskip
+
+La representación se genera asignando a los canales \textit{RGB} de una imagen a color, las probabilidad correspondientes de cada clase a la salida del clasificador. Asignando la probabilidad de \textit{Blow Hole Covert} al canal rojo, \textit{Breathy Embouchure} al verde y el restante \textit{Normal Embouchure} al canal azul se logra el resultado de la Figura \ref{fig:prediccion}.
+
+\bigskip
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{prediccion} 
+\caption{Representación gráfica de la predicción Vs. el \textit{ground truth}.}
+\label{fig:prediccion}
+\end{center}
+\end{figure}
 
 \newpage
 \bibliographystyle{apalike}
