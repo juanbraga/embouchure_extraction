@@ -10,9 +10,11 @@
 % modify this file as you see fit and even to delete this copyright
 % notice. 
 
-\documentclass{beamer}
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}	
+
 
 
 % There are many different themes available for Beamer. A comprehensive
@@ -110,13 +112,44 @@
 
 \subsection{Motivación}
 
-\begin{frame}{Motivación}{Optional Subtitle}
+\begin{frame}{Motivación}{Flauta Traversa}
   \begin{itemize}
   \item {
-    My first point.
+    Flauta Traversa perteneciente a la familia de las \textit{Maderas}
   }
   \item {
-    My second point.
+    Exitación periódica de la columna de aire generada por turbulencia de la colisión del flujo de aire contra el bisel de la embocadura.
+  }
+    \item {
+    Altura definida por las llaves del instrumento.
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Motivación}{Técnicas Extendidas}
+  \begin{itemize}
+  \item {
+    Exploración de nuevas sonoridades.
+  }
+  \item {
+    Extensión de los límites naturales del instrumento.
+  }
+    \item {
+    Técnicas reproducibles y bien definidas, generan que los instrumentistas tengan que expandir sus hablidades con el instrumento.
+  }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Motivación}{Extracción de contenido músical (MIR por su sigla en inglés)}
+  \begin{itemize}
+  \item {
+    Las alturas y duraciones ya no definen el material sonoro.
+  }
+  \item {
+    El repertorio contemporáneo define una área del MIR desafiante y de espectro más amplio.
+  }
+    \item {
+   	Hay lugar a contribuciones científicas mediante el acercamiento al material sonoro exótico.
   }
   \end{itemize}
 \end{frame}
@@ -128,25 +161,22 @@
 \begin{frame}{Embocadura}
   \begin{itemize}
   \item {
-    First item.
-    \pause % The slide will pause after showing the first item
-  }
+    Refiere al aparato de producción de la exitación de la columna de aire, en conjunto a la técnica de soplido.}
   \item {   
-    Second item.
+    Es determinante del material sonoro ejecutado, siendo perceptible de forma auditivia a través de cambios en la Dinámica, Altura y Timbre.
   }
   % You can also specify when the content should appear
   % by using <n->:
-  \item<3-> {
-    Third item.
+  \item {
+    Parámetros físicos que determinan la embocadura:
+    \begin{itemize}
+    	\item Ángulo de la Flauta.
+     	\item Apertura de los labios.
+     	\item Posición de los labios.
+     	\item Presión de Aire.
+    \end{itemize}
   }
-  \item<4-> {
-    Fourth item.
-  }
-  % or you can use the \uncover command to reveal general
-  % content (not just \items):
-  \item<5-> {
-    Fifth item. \uncover<6->{Extra text in the fifth item.}
-  }
+
   \end{itemize}
 \end{frame}
 
@@ -157,24 +187,31 @@
 \begin{frame}{Aliento/Arrugas de Marcelo Toledo}
   \begin{itemize}
   \item {
-    First item.
-    \pause % The slide will pause after showing the first item
+    Obra para Flauta Traversa solista, compuesta por el argentino Marcelo Toledo.
+    %\pause % The slide will pause after showing the first item
   }
   \item {   
-    Second item.
+    Emplea técnicas extendidas como recurso compositivo:
+    \begin{itemize}
+    	\item \textit{Flutter Tonguing} - Aleteo de lengüa.
+     	\item \textit{Tongue Noises} - Ruidos con la lengüa.
+     	\item \textit{Percussive Sounds} - Llaveo.
+     	\item \textit{Microtonal Inflections} - Inflecciones microtonales.
+     	\item \textit{Multiphonics} - Sonidos multifónicos (cantar y tocar a la vez).
+    \end{itemize}
   }
   % You can also specify when the content should appear
   % by using <n->:
-  \item<3-> {
+  \item {
     Third item.
   }
-  \item<4-> {
+  \item {
     Fourth item.
   }
   % or you can use the \uncover command to reveal general
   % content (not just \items):
-  \item<5-> {
-    Fifth item. \uncover<6->{Extra text in the fifth item.}
+  \item {
+    Fifth item. 
   }
   \end{itemize}
 \end{frame}
@@ -323,36 +360,36 @@ Here is an example of an example block.
 %
 %
 %
-%% All of the following is optional and typically not needed. 
-%\appendix
-%\section<presentation>*{\appendixname}
-%\subsection<presentation>*{For Further Reading}
-%
-%\begin{frame}[allowframebreaks]
-%  \frametitle<presentation>{For Further Reading}
-%    
-%  \begin{thebibliography}{10}
-%    
-%  \beamertemplatebookbibitems
-%  % Start with overview books.
-%
-%  \bibitem{Author1990}
-%    A.~Author.
-%    \newblock {\em Handbook of Everything}.
-%    \newblock Some Press, 1990.
-% 
-%    
-%  \beamertemplatearticlebibitems
-%  % Followed by interesting articles. Keep the list short. 
-%
-%  \bibitem{Someone2000}
-%    S.~Someone.
-%    \newblock On this and that.
-%    \newblock {\em Journal of This and That}, 2(1):50--100,
-%    2000.
-%  \end{thebibliography}
-%\end{frame}
-%
+% All of the following is optional and typically not needed. 
+\appendix
+\section<presentation>*{\appendixname}
+\subsection<presentation>*{For Further Reading}
+
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{Literatura sobre Flauta}
+    
+  \begin{thebibliography}{}
+    
+  \beamertemplatebookbibitems
+  % Start with overview books.
+
+  \bibitem{piston1955orchestration}
+    A.~Author.
+    \newblock {\em Handbook of Everything}.
+    \newblock Some Press, 1990.
+ 
+    
+  \beamertemplatearticlebibitems
+  % Followed by interesting articles. Keep the list short. 
+
+  \bibitem{Someone2000}
+    S.~Someone.
+    \newblock On this and that.
+    \newblock {\em Journal of This and That}, 2(1):50--100,
+    2000.
+  \end{thebibliography}
+\end{frame}
+
 \end{document}
 
 

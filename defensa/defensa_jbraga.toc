@@ -2,15 +2,15 @@
 \select@language {spanish}
 \beamer@sectionintoc {1}{Introducci\IeC {\'o}n}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{Motivaci\IeC {\'o}n}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Embocadura}{4}{0}{1}
-\beamer@subsectionintoc {1}{3}{Aliento/Arrugas de Marcelo Toledo}{10}{0}{1}
-\beamer@sectionintoc {2}{Definici\IeC {\'o}n del Problema}{16}{0}{2}
-\beamer@subsectionintoc {2}{1}{Estrategia de Resoluci\IeC {\'o}n}{16}{0}{2}
-\beamer@subsectionintoc {2}{2}{Conjunto de Datos}{17}{0}{2}
-\beamer@subsectionintoc {2}{3}{Extracci\IeC {\'o}n de Caracter\IeC {\'\i }sticas}{18}{0}{2}
-\beamer@sectionintoc {3}{Experimentos}{19}{0}{3}
-\beamer@subsectionintoc {3}{1}{Primer experimento}{19}{0}{3}
-\beamer@subsectionintoc {3}{2}{Segundo experimento}{20}{0}{3}
-\beamer@subsectionintoc {3}{3}{Refinamiento de la extracci\IeC {\'o}n de caracter\IeC {\'\i }sticas basada en MFCC}{21}{0}{3}
-\beamer@sectionintoc {4}{Conclusiones}{22}{0}{4}
-\beamer@subsectionintoc {4}{1}{Trabajo a Futuro}{23}{0}{4}
+\beamer@subsectionintoc {1}{2}{Embocadura}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{Aliento/Arrugas de Marcelo Toledo}{7}{0}{1}
+\beamer@sectionintoc {2}{Definici\IeC {\'o}n del Problema}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Estrategia de Resoluci\IeC {\'o}n}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Conjunto de Datos}{9}{0}{2}
+\beamer@subsectionintoc {2}{3}{Extracci\IeC {\'o}n de Caracter\IeC {\'\i }sticas}{10}{0}{2}
+\beamer@sectionintoc {3}{Experimentos}{11}{0}{3}
+\beamer@subsectionintoc {3}{1}{Primer experimento}{11}{0}{3}
+\beamer@subsectionintoc {3}{2}{Segundo experimento}{12}{0}{3}
+\beamer@subsectionintoc {3}{3}{Refinamiento de la extracci\IeC {\'o}n de caracter\IeC {\'\i }sticas basada en MFCC}{13}{0}{3}
+\beamer@sectionintoc {4}{Conclusiones}{14}{0}{4}
+\beamer@subsectionintoc {4}{1}{Trabajo a Futuro}{15}{0}{4}
