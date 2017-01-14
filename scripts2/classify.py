@@ -15,7 +15,7 @@ from sklearn import svm
 from sklearn import preprocessing
 
 import sys
-import matlab.engine
+#import matlab.engine
 import extract_features
 import mat2npy_lpc_features
 import matplotlib.pyplot as plt
